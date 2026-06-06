@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Julia Miłoś</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:      #F2EFE8;
+  --bg2:     #EAE6DC;
+  --paper:   #FAFAF7;
+  --ink:     #1C1C1A;
+  --muted:   #8A8880;
+  --border:  rgba(28,28,26,0.1);
+
+  --coral:   #be6046;
+  --coral-l: #e7a89c;
+  --olive:   #C7B49D;
+  --burg:    #7C3230;
+
+  --display: 'Montserrat', sans-serif;
+  --body:    'Courier New', sans-serif;
+  --max:     1200px;
+  --ease:    cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--body); background: var(--bg); color: var(--ink); overflow-x: hidden; font-weight: 300; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.5rem 3rem;
+  transition: background 0.4s var(--ease);
+}
+nav.scrolled { background: rgba(242,239,232,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+.nav-logo { font-family: var(--body); font-weight: 500; font-size: 0.9rem; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a { text-decoration: none; font-size: 0.78rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); transition: color 0.2s; }
+.nav-links a:hover { color: var(--ink); }
+.nav-menu { display: flex; flex-direction: column; gap: 5px; cursor: pointer; }
+.nav-menu span { display: block; width: 24px; height: 1px; background: var(--ink); }
+.nav-menu span:last-child { width: 16px; }
+
+/* ── HERO ── */
+#hero {
+  height: 100vh; min-height: 680px;
+  display: grid; grid-template-columns: 45% 55%;
+  overflow: hidden;
+}
+
+.hero-photo { background-image: url('P2X01688.JPG'); background-size: cover; background-position: center; }
+.hero-photo-silhouette {
+  position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 62%; height: 82%;
+  background: linear-gradient(180deg, #C8C4B8 0%, #B8B4A8 100%);
+  border-radius: 200px 200px 0 0;
+}
+.hero-photo-overlay { position: absolute; inset: 0; background: linear-gradient(to right, transparent 60%, var(--bg) 100%); }
+
+.hero-content {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 8rem 4rem 4rem 3rem; position: relative;
+}
+
+.hero-tag {
+  display: inline-block; margin-bottom: 1.5rem;
+  font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 0.3rem 0.9rem; border-radius: 100px;
+  background: var(--coral-l); color: var(--coral); font-weight: 500;
+  width: fit-content;
+}
+
+.hero-title {
+  font-family: var(--display);
+  font-size: clamp(4.5rem, 8.5vw, 8rem);
+  line-height: 0.92; letter-spacing: 0.02em; color: var(--ink);
+  margin-bottom: 1.2rem;
+}
+
+.hero-line { width: 80px; height: 2px; background: var(--coral); margin-bottom: 1.5rem; }
+
+.hero-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.8; max-width: 360px; margin-bottom: 2.5rem; }
+
+.hero-cta { display: flex; gap: 1.2rem; align-items: center; }
+
+.btn-primary {
+  padding: 0.88rem 2.2rem; background: var(--ink); color: var(--bg);
+  font-family: var(--body); font-size: 0.76rem; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+  display: inline-block; transition: background 0.2s, transform 0.2s;
+}
+.btn-primary:hover { background: var(--coral); transform: translateY(-2px); }
+
+.btn-outline {
+  padding: 0.88rem 2.2rem; background: transparent;
+  border: 1px solid var(--border); color: var(--ink);
+  font-family: var(--body); font-size: 0.76rem; font-weight: 400;
+  letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+  display: inline-block; transition: border-color 0.2s, transform 0.2s;
+}
+.btn-outline:hover { border-color: var(--ink); transform: translateY(-2px); }
+
+.hero-page-num { position: absolute; bottom: 3rem; right: 3rem; font-size: 0.72rem; letter-spacing: 0.14em; color: var(--muted); }
+
+/* ── TICKER ── */
+.ticker-wrap { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 0.85rem 0; background: var(--paper); }
+.ticker { display: flex; gap: 3.5rem; animation: ticker 22s linear infinite; white-space: nowrap; width: max-content; }
+.ticker span { font-family: var(--display); font-size: 1rem; letter-spacing: 0.15em; color: var(--muted); }
+.ticker .dot { color: var(--coral); font-size: 0.4rem; vertical-align: middle; }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── PROJECTS ── */
+#projects { padding: 7rem 3rem; max-width: var(--max); margin: 0 auto; }
+
+.section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
+.section-eyebrow { font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+.section-title { font-family: var(--display); font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: 0.04em; line-height: 1; }
+.section-count { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em; }
+
+.project-featured {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--border); margin-bottom: 1.5rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  cursor: pointer; text-decoration: none; color: inherit; overflow: hidden;
+  background: var(--paper);
+}
+.project-featured:hover { border-color: var(--coral); box-shadow: 0 8px 40px rgba(212,97,74,0.08); }
+
+.project-featured-img { aspect-ratio: 16/10; overflow: hidden; }
+.project-img-inner {
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+  font-family: var(--display); font-size: 2rem; letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.25); transition: transform 0.7s var(--ease);
+}
+.project-featured:hover .project-img-inner,
+.project-card:hover .project-img-inner { transform: scale(1.05); }
+
+.project-featured-body { padding: 2.5rem; display: flex; flex-direction: column; justify-content: space-between; }
+.project-num { font-size: 0.65rem; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; margin-bottom: 2rem; }
+.project-featured-name { font-family: var(--display); font-size: clamp(1.8rem, 2.8vw, 2.6rem); letter-spacing: 0.03em; line-height: 1.05; margin-bottom: 1rem; }
+.project-featured-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.75; margin-bottom: 2rem; }
+
+.project-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.tag { font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.28rem 0.75rem; border: 1px solid var(--border); color: var(--muted); }
+.tag.coral { background: var(--coral-l); color: var(--coral); border-color: transparent; }
+.tag.olive { background: var(--olive); color: var(--olive); border-color: transparent; }
+.tag.burg  { background: var(--burg);  color: var(--burg);  border-color: transparent; }
+
+.project-arrow { font-size: 1.4rem; color: var(--muted); align-self: flex-end; transition: transform 0.3s, color 0.3s; }
+.project-featured:hover .project-arrow { transform: translate(4px, -4px); color: var(--coral); }
+
+.projects-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.project-card { border: 1px solid var(--border); cursor: pointer; text-decoration: none; color: inherit; display: block; transition: border-color 0.3s, box-shadow 0.3s; overflow: hidden; background: var(--paper); }
+.project-card:hover { border-color: var(--olive); box-shadow: 0 8px 40px rgba(107,122,62,0.07); }
+.project-card-img { aspect-ratio: 16/9; overflow: hidden; }
+.project-card-body { padding: 1.5rem; }
+.project-card-name { font-family: var(--display); font-size: 1.6rem; letter-spacing: 0.04em; margin: 0.4rem 0 0.5rem; }
+.project-card-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.65; }
+
+/* ── ABOUT ── */
+#about { background: var(--bg2); padding: 7rem 0; }
+.about-inner { max-width: var(--max); margin: 0 auto; padding: 0 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+.about-photo { aspect-ratio: 3/4; background: var(--bg); position: relative; overflow: hidden; }
+.about-photo-fill { width: 100%; height: 100%; background: #D8D4CC; display: flex; align-items: flex-end; justify-content: center; }
+.about-photo-fill::after { content: ''; width: 55%; height: 78%; background: #C4BFB4; border-radius: 150px 150px 0 0; }
+.about-photo-label { position: absolute; bottom: 1.5rem; left: 1.5rem; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+
+.about-text .section-title { margin-bottom: 2rem; }
+.about-text p { font-size: 0.93rem; color: var(--muted); line-height: 1.85; margin-bottom: 1.25rem; }
+
+.skills-list { margin-top: 2.5rem; border-top: 1px solid var(--border); }
+.skill-row { display: flex; justify-content: space-between; align-items: center; padding: 0.9rem 0; border-bottom: 1px solid var(--border); }
+.skill-name { font-size: 0.85rem; }
+.skill-track { width: 120px; height: 2px; background: var(--border); position: relative; border-radius: 2px; }
+.skill-fill { position: absolute; top: 0; left: 0; height: 2px; border-radius: 2px; background: var(--coral); transform: scaleX(0); transform-origin: left; transition: transform 1s var(--ease); }
+.skill-fill.animate { transform: scaleX(1); }
+
+/* ── CONTACT ── */
+#contact { padding: 7rem 3rem; max-width: var(--max); margin: 0 auto; }
+.contact-big { font-family: var(--display); font-size: clamp(3rem, 7vw, 7rem); letter-spacing: 0.03em; line-height: 0.95; margin-bottom: 3rem; border-top: 1px solid var(--border); padding-top: 3rem; }
+.contact-big span { color: var(--muted); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.contact-left p { font-size: 0.875rem; color: var(--muted); line-height: 1.8; margin-bottom: 2.5rem; max-width: 380px; }
+.contact-links { display: flex; flex-direction: column; }
+.contact-link { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--border); text-decoration: none; color: var(--ink); font-size: 0.85rem; letter-spacing: 0.04em; transition: padding-left 0.3s var(--ease), color 0.2s; }
+.contact-link:hover { padding-left: 0.5rem; color: var(--coral); }
+.contact-link .arrow { color: var(--muted); transition: color 0.2s; }
+.contact-link:hover .arrow { color: var(--coral); }
+
+.contact-form { display: flex; flex-direction: column; }
+.form-field { border-bottom: 1px solid var(--border); padding: 1.2rem 0; display: flex; flex-direction: column; gap: 0.3rem; transition: border-color 0.3s; }
+.form-field:focus-within { border-color: var(--coral); }
+.form-field label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+.form-field input, .form-field textarea, .form-field select { background: transparent; border: none; outline: none; font-family: var(--body); font-size: 0.9rem; font-weight: 300; color: var(--ink); width: 100%; resize: none; }
+.form-field input::placeholder, .form-field textarea::placeholder { color: #C0BDB6; }
+.form-field select option { background: var(--bg); }
+.form-field textarea { min-height: 80px; }
+
+.btn-send { margin-top: 2rem; align-self: flex-start; padding: 0.95rem 2.5rem; background: transparent; border: 1px solid var(--border); color: var(--ink); font-family: var(--body); font-size: 0.72rem; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; transition: background 0.3s, border-color 0.3s, color 0.3s; }
+.btn-send:hover { background: var(--coral); color: white; border-color: var(--coral); }
+
+.success-msg { display: none; margin-top: 1.5rem; font-size: 0.78rem; letter-spacing: 0.08em; color: var(--olive); }
+
+/* ── FOOTER ── */
+footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.08em; }
+
+/* ── ANIMATIONS ── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+.reveal.visible { opacity: 1; transform: none; }
+
+@media (max-width: 768px) {
+  nav { padding: 1.2rem 1.5rem; }
+  .nav-links { display: none; }
+  #hero { grid-template-columns: 1fr; }
+  .hero-photo { height: 50vh; }
+  .hero-content { padding: 3rem 1.5rem 5rem; }
+  #projects, #contact { padding: 4rem 1.5rem; }
+  .project-featured { grid-template-columns: 1fr; }
+  .projects-row { grid-template-columns: 1fr; }
+  #about { padding: 4rem 0; }
+  .about-inner { grid-template-columns: 1fr; gap: 3rem; padding: 0 1.5rem; }
+  .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+  footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">Julia Miłoś</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projekty</a></li>
+    <li><a href="#about">O mnie</a></li>
+    <li><a href="#contact">Kontakt</a></li>
+  </ul>
+  <div class="nav-menu" aria-hidden="true"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-photo">
+    <div class="hero-photo-silhouette"></div>
+    <div class="hero-photo-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <h1 class="hero-title">Portfolio</h1>
+    <div class="hero-line"></div>
+    <p class="hero-desc">Jestem studentką 3 roku na kierunku Elektroniczne Przetwarzanie Informacji na Uniwersytecie Jagiellońskim w Krakowie.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">Zobacz projekty</a>
+      <a href="#about" class="btn-outline">O mnie</a>
+    </div>
+    <div class="hero-page-num">01</div>
+  </div>
+</section>
+
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header reveal">
+    <div>
+      <p class="section-eyebrow">Wybrane prace</p>
+      <h2 class="section-title">Projekty</h2>
+    </div>
+    <span class="section-count">02 prace</span>
+  </div>
+
+  <a href="soma.html" class="project-featured reveal">
+    <div class="project-featured-img">
+      <div class="project-img-inner" style="background: linear-gradient(135deg, #e7a89c 0%, #be6046 100%);">SOMA</div>
+    </div>
+    <div class="project-featured-body">
+      <div class="project-num">01</div>
+      <div>
+        <h3 class="project-featured-name">SOMA — strona internetowa z suplementami</h3>
+        <p class="project-featured-desc">Projekt przedstawia nowoczesny landing page marki suplementów wellness skierowanej głównie do kobiet dbających o zdrowie i świadomą suplementację. Głównym celem projektu było stworzenie przejrzystego, budzącego zaufanie doświadczenia, które ułatwia dobór suplementów dopasowanych do indywidualnych potrzeb organizmu. Warstwa wizualna łączy styl premium wellness z  nowoczesnym interfejsem, tworząc ciekawy i przyjazny odbiór marki.</p>
+        <div class="project-tags">
+          <span class="tag coral">UX/UI</span>
+          <span class="tag olive">Desktop</span>
+          <span class="tag">Figma</span>
+        </div>
+      </div>
+      <span class="project-arrow">↗</span>
+    </div>
+  </a>
+
+    <a href="projekt.html" class="project-featured reveal">
+    <div class="project-featured-img">
+      <div class="project-img-inner" style="background: linear-gradient(135deg,#C8A882,#9B7B5A);">SOMA</div>
+    </div>
+    <div class="project-featured-body">
+      <div class="project-num">01</div>
+      <div>
+        <h3 class="project-featured-name">GOODGUT - aplikacja</h3>
+        <p class="project-featured-desc">Celem aplikacji GoodGut jest promowanie świadomej troski o zdrowie fizyczne i psychiczne. Zawarte funkcjonalności pozwalają na ułatwienie rozpoznawania sygnałów, które wysyła organizm (np. zmęczenie, bezsenność, problemy trawienne). Aplikacja promuje zintegrowane podejście do zdrowia – łączenie diety, aktywności
+        fizycznej i dobrostanu psychicznego. GoodGut wyróżnia dostęp do wiedzy ekspertów i możliwość umawiania się na konsultacje ze specjalistami bezpośrednio przez aplikację.</p>
+        <div class="project-tags">
+          <span class="tag coral">UX/UI</span>
+          <span class="tag olive">Mobile</span>
+          <span class="tag">Figma</span>
+          <span class="tag">Blender</span>
+        </div>
+      </div>
+      <span class="project-arrow">↗</span>
+    </div>
+  </a>
+
+  <div class="projects-row reveal">
+    <a href="projekt.html" class="project-card">
+      <div class="project-card-img">
+        <div class="project-img-inner" style="background: linear-gradient(135deg,#7A9B6A,#5A7A4A);">Złoty Zakwas</div>
+      </div>
+      <div class="project-card-body">
+        <div class="project-num">02</div>
+        <h3 class="project-card-name">Złoty zakwas - branding piekarni rzemieślniczej</h3>
+        <p class="project-card-desc">Branding piekarni rzemieślniczej “Złoty Zakwas”. Na potrzebę projektu zaprojektowane zostało logo, prototypy etykiet, plakat, wizytówka oraz post na social media. Projekt został wykonany w spójnej estetyce.</p>
+        <div class="project-tags" style="margin-top: 1rem;">
+          <span class="tag olive">Branding</span><span class="tag">Figma</span><span class="tag">Adobe Photosop</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="projekt.html" class="project-card">
+      <div class="project-card-img">
+        <div class="project-img-inner" style="background: linear-gradient(135deg,#8A4A5A,#6A2A3A);">MyBus</div>
+      </div>
+      <div class="project-card-body">
+        <div class="project-num">03</div>
+        <h3 class="project-card-name">MyBus - redesign aplikacji</h3>
+        <p class="project-card-desc">Celem projektu było odświeżenie i uproszczenie interfejsu aplikacji MyBus, służącej do sprawdzania komunikacji miejskiej w czasie rzeczywistym. Redesign miał zwiększyć czytelność, intuicyjność oraz komfort korzystania z aplikacji w ruchu.</p>
+        <div class="project-tags" style="margin-top: 1rem;">
+          <span class="tag burg">Mobile</span><span class="tag">Figma</span>
+        </div>
+      </div>
+    </a>
+    
+    <a href="projekt.html" class="project-card">
+      <div class="project-card-img">
+        <div class="project-img-inner" style="background: linear-gradient(135deg,#8A4A5A,#6A2A3A);">Breath&Balance</div>
+      </div>
+      <div class="project-card-body">
+        <div class="project-num">05</div>
+        <h3 class="project-card-name">Breath&Balance - strona studia jogi</h3>
+        <p class="project-card-desc">Projekt strony internetowej studia jogi Breathe&Balance został stworzony z myślą o prostym i przyjaznym sposobie zapisywania się na zajęcia. Celem projektu było połączenie estetyki spokoju i równowagi z funkcjonalnością, która pozwala użytkownikom intuicyjnie przeglądać ofertę i rezerwować miejsce na wybrane zajęcia. Strona została zaprojektowana w duchu minimalizmu – z delikatną kolorystyką, dużą ilością przestrzeni i czytelną typografią. Uproszczona nawigacja i wyraźne przyciski CTA wspierają płynne doświadczenie użytkownika, a responsywny układ zapewnia wygodne korzystanie z serwisu zarówno na komputerze, jak i na urządzeniach mobilnych.</p>
+        <div class="project-tags" style="margin-top: 1rem;">
+          <span class="tag burg">Desktop</span><span class="tag">Figma</span><span class="tag">MySQL</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="projekt.html" class="project-card">
+      <div class="project-card-img">
+        <div class="project-img-inner" style="background: linear-gradient(135deg,#8A4A5A,#6A2A3A);">Animacja karuzeli</div>
+      </div>
+      <div class="project-card-body">
+        <div class="project-num">06</div>
+        <h3 class="project-card-name">Animacja karuzeli</h3>
+        <p class="project-card-desc">Krótka animacja cyrkowej karuzeli wykonana w aplikacji Blender.</p>
+        <div class="project-tags" style="margin-top: 1rem;">
+          <span class="tag burg">Animacja</span>
+          <span class="tag">Blender</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div id="about" style="background: var(--bg2); padding: 7rem 0;">
+  <div class="about-inner">
+    <div class="about-photo reveal">
+     <img src="P2X01171.JPG" style="width:100%; height:100%; object-fit:cover; object-position:center top;">
+    </div>
+    <div class="about-text reveal">
+      <p class="section-eyebrow">Kim jestem</p>
+      <h2 class="section-title">O mnie</h2>
+      <p>Cześć! Mam na imię Julia i jestem studentką trzeciego roku na kierunku Elektroniczne Przetwarzanie Informacji na Uniwersytecie Jagiellońskim.</p>
+      <p>Jestem osobą kreatywną, ciekawą świata i otwartą na nowe wyzwania. Lubię poznawać ludzi, obserwować ich potrzeby i szukać rozwiązań, które realnie poprawiają ich doświadczenia. Szczególnie interesuje mnie obszar User Experience, projektowania wizualnego oraz Customer Experience, gdzie mogę łączyć analityczne myślenie z wyczuciem estetyki. Wierzę, że najlepsze produkty powstają na styku potrzeb użytkowników, celów biznesowych i przemyślanego designu. </p>
+      <p>W projektach stawiam na empatię, uważność na detale i ciągły rozwój. Chętnie uczę się nowych rzeczy, wychodzę poza swoją strefę komfortu i wierzę, że najlepsze pomysły powstają dzięki otwartości, współpracy i ciekawości.</p>
+      <div class="skills-list">
+        <div class="skill-row"><span class="skill-name">Figma</span><div class="skill-track"><div class="skill-fill" style="width:80%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Prototypowanie</span><div class="skill-track"><div class="skill-fill" style="width:85%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">UX Research</span><div class="skill-track"><div class="skill-fill" style="width:75%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">CorelDraw</span><div class="skill-track"><div class="skill-fill" style="width:90%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Blender</span><div class="skill-track"><div class="skill-fill" style="width:60%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Adobe Photoshop</span><div class="skill-track"><div class="skill-fill" style="width:40%"></div></div></div>
+        <div class="skill-row"><span class="skill-name">HTML / CSS</span><div class="skill-track"><div class="skill-fill" style="width:55%"></div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-big reveal">Porozmawiajmy<br><span>o współpracy</span></div>
+  <div class="contact-grid">
+    <div class="contact-left reveal">
+      <p>Zapraszam do kontaktu.</p>
+      <div class="contact-links">
+        <a href="mailto:milosjulia.o@gmail.com" class="contact-link">milosjulia.o@gmail.com<span class="arrow">↗</span></a>
+        <a href="www.linkedin.com/in/julia-miłoś-8b3b56356" class="contact-link" target="_blank">LinkedIn<span class="arrow">↗</span></a>
+        <a href="#" class="contact-link">CV do pobrania<span class="arrow">↓</span></a>
+      </div>
+    </div>
+    <form class="contact-form reveal" id="contactForm">
+      <div class="form-field"><label>Imię i nazwisko</label><input type="text" placeholder="Imię" required></div>
+      <div class="form-field"><label>E-mail</label><input type="email" placeholder="example@mail.pl" required></div>
+      <div class="form-field"><label>Temat</label><input type="text" placeholder="Temat" required></div>
+      <div class="form-field"><label>Wiadomość</label><textarea placeholder="Wiadomość" required></textarea></div>
+      <button type="submit" class="btn-send">Wyślij wiadomość</button>
+      <p class="success-msg" id="successMsg">✓ Wiadomość wysłana. Do usłyszenia!</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <span>2026 Julia Miloś</span>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+  });
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const skillIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.skill-fill').forEach((bar, i) => { setTimeout(() => bar.classList.add('animate'), i * 130); });
+        skillIO.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.skills-list').forEach(el => skillIO.observe(el));
+
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    document.getElementById('successMsg').style.display = 'block';
+    this.reset();
+  });
+</script>
+</body>
+</html>

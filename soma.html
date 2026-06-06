@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOMA — Julia Miłoś</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:      #F2EFE8;
+  --bg2:     #EAE6DC;
+  --paper:   #FAFAF7;
+  --ink:     #1C1C1A;
+  --muted:   #8A8880;
+  --light:   #C4BFB8;
+  --border:  rgba(28,28,26,0.12);
+  --coral:   #be6046;
+  --coral-l: #e7a89c;
+  --olive:   #C7B49D;
+  --burg:    #7C3230;
+  --sans:    'Montserrat', sans-serif;
+  --mono:    'Courier New', Courier, monospace;
+  --ease:    cubic-bezier(0.4,0,0.2,1);
+  --max:     1200px;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--bg); color: var(--ink); overflow-x: hidden; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.4rem 3rem;
+  transition: background 0.4s var(--ease);
+}
+nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+.nav-logo { font-family: var(--sans); font-weight: 600; font-size: 0.88rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
+.nav-back { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s; }
+.nav-back:hover { color: var(--ink); }
+
+/* ── COVER ── */
+.cs-cover {
+  height: 100vh; min-height: 600px;
+  position: relative; overflow: hidden;
+  display: flex; align-items: flex-end;
+  background: linear-gradient(135deg, #e7a89c 0%, #be6046 100%);
+}
+
+/* podmień na img gdy masz screenshot okładkowy */
+.cs-cover-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  display: block;
+}
+/* gradient na dole żeby tekst był czytelny */
+.cs-cover-gradient {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(20,20,16,0.75) 0%, rgba(20,20,16,0.1) 60%, transparent 100%);
+}
+
+.cs-cover-content {
+  position: relative; z-index: 10;
+  padding: 0 3rem 4rem;
+  width: 100%;
+  display: flex; flex-direction: column; gap: 1.5rem;
+}
+
+.cs-cover-meta {
+  display: flex; gap: 3rem; flex-wrap: wrap;
+}
+.cs-meta-item { display: flex; flex-direction: column; gap: 0.2rem; }
+.cs-meta-label { font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+.cs-meta-value { font-size: 0.82rem; font-weight: 400; color: rgba(255,255,255,0.85); }
+
+.cs-cover-title {
+  font-family: var(--sans); font-weight: 700;
+  font-size: clamp(3.5rem, 8vw, 7.5rem);
+  letter-spacing: -0.02em; line-height: 0.95;
+  color: #FFFFFF;
+}
+.cs-cover-title em { font-style: italic; font-weight: 300; color: rgba(255,255,255,0.6); }
+
+.cs-cover-sub {
+  font-size: 1rem; font-weight: 300; font-style: italic;
+  color: rgba(255,255,255,0.55); letter-spacing: 0.04em;
+}
+
+.cs-cover-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.cs-tag {
+  font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 0.25rem 0.75rem;
+  border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.6);
+}
+
+.cs-page-num {
+  position: absolute; bottom: 3rem; right: 3rem; z-index: 10;
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em;
+  color: rgba(255,255,255,0.25);
+}
+
+/* ── STATS STRIP ── */
+.cs-strip {
+  background: var(--ink);
+  display: flex;
+}
+.cs-stat {
+  flex: 1; padding: 1.75rem 2rem;
+  border-right: 1px solid rgba(255,255,255,0.07);
+  display: flex; flex-direction: column; gap: 0.25rem;
+}
+.cs-stat:last-child { border-right: none; }
+.cs-stat-val {
+  font-family: var(--sans); font-weight: 700; font-size: 1.6rem;
+  color: rgba(255,255,255,0.85); letter-spacing: -0.01em;
+}
+.cs-stat-lbl {
+  font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: rgba(255,255,255,0.3);
+}
+
+/* ── SHARED ── */
+.cs-section { padding: 5rem 3rem; max-width: var(--max); margin: 0 auto; }
+.eyebrow { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 0.6rem; }
+.cs-heading { font-family: var(--sans); font-weight: 700; font-size: clamp(1.8rem, 3.5vw, 3rem); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1.5rem; }
+.cs-body { font-size: 0.86rem; color: var(--muted); line-height: 1.9; font-weight: 400; }
+.cs-body p + p { margin-top: 1rem; }
+
+.cs-2col { display: grid; grid-template-columns: 1fr 1.8fr; gap: 5rem; align-items: start; }
+.cs-divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+/* ── SCREENSHOT AREA ── */
+.cs-screenshot-full {
+  background: var(--bg2); padding: 4rem 0;
+}
+.cs-screenshot-inner {
+  max-width: var(--max); margin: 0 auto; padding: 0 3rem;
+}
+.cs-screenshot-label {
+  font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--muted);
+  display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem;
+}
+.cs-screenshot-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ramka na screenshot */
+.cs-frame {
+  border: 1px solid var(--border);
+  background: var(--paper);
+  overflow: hidden;
+  position: relative;
+}
+/* pasek przeglądarki — dekoracja */
+.cs-frame-bar {
+  height: 36px; background: var(--bg2); border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; padding: 0 1rem; gap: 0.4rem;
+}
+.cs-frame-dot { width: 10px; height: 10px; border-radius: 50%; }
+.cs-frame-dot:nth-child(1) { background: #EDADA0; }
+.cs-frame-dot:nth-child(2) { background: #EDD7A0; }
+.cs-frame-dot:nth-child(3) { background: #A0EDB8; }
+.cs-frame-url {
+  margin-left: 0.75rem; flex: 1; max-width: 300px;
+  height: 20px; background: var(--bg); border-radius: 4px;
+  display: flex; align-items: center; padding: 0 0.75rem;
+  font-family: var(--mono); font-size: 0.55rem; color: var(--light); letter-spacing: 0.04em;
+}
+
+/* placeholder gdy nie ma screenshota */
+.cs-img-placeholder {
+  width: 100%; aspect-ratio: 16/9;
+  background: linear-gradient(135deg, var(--bg2) 0%, var(--light) 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem;
+}
+.cs-img-placeholder span {
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted);
+}
+/* gdy dodasz screenshot: <img src="screenshot.jpg" class="cs-img"> */
+.cs-img { width: 100%; display: block; height: auto; }
+
+/* wiele screenshotów — siatka */
+.cs-screens-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 1.5rem;
+}
+.cs-screens-grid .cs-frame { }
+
+/* mobile screenshoty — pionowe */
+.cs-mobile-row {
+  display: flex; gap: 1.5rem; overflow-x: auto; padding-bottom: 0.5rem; margin-top: 1.5rem;
+}
+.cs-mobile-frame {
+  flex-shrink: 0; width: 200px;
+  border: 1px solid var(--border); background: var(--paper); overflow: hidden; border-radius: 16px;
+}
+.cs-mobile-inner {
+  aspect-ratio: 9/19.5;
+  background: linear-gradient(180deg, var(--bg2), var(--light));
+  display: flex; align-items: center; justify-content: center;
+}
+.cs-mobile-inner img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 0 0 16px 16px; }
+
+/* ── PROBLEM CARDS ── */
+.cs-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-top: 2rem; }
+.cs-card {
+  padding: 1.75rem; background: var(--paper); border: 1px solid var(--border);
+  position: relative; overflow: hidden; transition: border-color 0.3s;
+}
+.cs-card:hover { border-color: var(--coral); }
+.cs-card-num {
+  font-family: var(--sans); font-weight: 700; font-size: 3rem;
+  line-height: 1; color: var(--bg2); margin-bottom: 0.75rem;
+}
+.cs-card-title { font-weight: 600; font-size: 0.88rem; margin-bottom: 0.5rem; }
+.cs-card-text { font-size: 0.78rem; color: var(--muted); line-height: 1.7; }
+.cs-card-bar { position: absolute; top: 0; left: 0; width: 3px; height: 0; background: var(--coral); transition: height 0.4s var(--ease); }
+.cs-card:hover .cs-card-bar { height: 100%; }
+
+/* ── PROCESS ── */
+.cs-process { display: flex; border: 1px solid var(--border); overflow: hidden; margin-top: 2rem; }
+.cs-step {
+  flex: 1; padding: 1.75rem 1.5rem; background: var(--paper);
+  border-right: 1px solid var(--border); position: relative;
+  transition: background 0.3s;
+}
+.cs-step:last-child { border-right: none; }
+.cs-step:hover { background: var(--bg2); }
+.cs-step-idx { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.15em; color: var(--light); margin-bottom: 0.75rem; }
+.cs-step-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 0.4rem; }
+.cs-step-desc { font-size: 0.76rem; color: var(--muted); line-height: 1.65; }
+.cs-step-line { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: transparent; transition: background 0.3s; }
+.cs-step:hover .cs-step-line { background: var(--coral); }
+
+/* ── OUTCOMES ── */
+.cs-outcomes {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  border: 1px solid var(--border); background: var(--paper); margin-top: 3rem;
+}
+.cs-outcome { padding: 2rem 1.5rem; border-right: 1px solid var(--border); text-align: center; }
+.cs-outcome:last-child { border-right: none; }
+.cs-outcome-val { font-family: var(--sans); font-weight: 700; font-size: 2.5rem; color: var(--coral); line-height: 1; }
+.cs-outcome-lbl { font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 0.4rem; line-height: 1.6; }
+
+/* ── QUOTE ── */
+.cs-quote { padding: 0 3rem 5rem; max-width: var(--max); margin: 0 auto; }
+.cs-quote-box {
+  padding: 2.5rem; border: 1px solid var(--border);
+  border-top: 3px solid var(--coral); background: var(--paper);
+  display: grid; grid-template-columns: auto 1fr; gap: 1.75rem; align-items: start;
+}
+.cs-quote-mark { font-family: var(--sans); font-size: 5rem; line-height: 0.75; color: var(--coral-l); font-weight: 700; }
+.cs-quote-text { font-size: 1rem; font-style: italic; font-weight: 300; line-height: 1.75; color: var(--ink); margin-bottom: 0.75rem; }
+.cs-quote-by { font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+
+/* ── NEXT PROJECT ── */
+.cs-next {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 4rem 3rem; background: var(--paper); border-top: 1px solid var(--border);
+  text-decoration: none; color: inherit; transition: background 0.3s;
+}
+.cs-next:hover { background: var(--bg2); }
+.cs-next-lbl { font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+.cs-next-title { font-family: var(--sans); font-weight: 700; font-size: clamp(1.8rem, 3.5vw, 3rem); letter-spacing: -0.02em; transition: color 0.3s; }
+.cs-next:hover .cs-next-title { color: var(--coral); }
+.cs-next-arr { font-size: 2.5rem; color: var(--light); transition: transform 0.3s, color 0.3s; }
+.cs-next:hover .cs-next-arr { transform: translate(6px,-6px); color: var(--coral); }
+
+/* ── FOOTER ── */
+footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 0.58rem; color: var(--light); letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── MOBILE ── */
+@media (max-width: 900px) {
+  nav { padding: 1.2rem 1.5rem; }
+  .cs-cover-content { padding: 0 1.5rem 3.5rem; }
+  .cs-strip { flex-wrap: wrap; }
+  .cs-stat { border-bottom: 1px solid rgba(255,255,255,0.07); min-width: 50%; }
+  .cs-section { padding: 3.5rem 1.5rem; }
+  .cs-2col { grid-template-columns: 1fr; gap: 2rem; }
+  .cs-cards { grid-template-columns: 1fr; }
+  .cs-process { flex-direction: column; }
+  .cs-step { border-right: 1px solid var(--border); border-bottom: none; }
+  .cs-outcomes { grid-template-columns: 1fr 1fr; }
+  .cs-outcome:nth-child(2) { border-right: none; }
+  .cs-outcome:nth-child(3) { border-top: 1px solid var(--border); }
+  .cs-outcome:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
+  .cs-screenshot-inner { padding: 0 1.5rem; }
+  .cs-screens-grid { grid-template-columns: 1fr; }
+  .cs-quote { padding: 0 1.5rem 4rem; }
+  .cs-next { padding: 3rem 1.5rem; flex-direction: column; align-items: flex-start; gap: 1rem; }
+  footer { flex-direction: column; gap: 0.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">Julia Miłoś</a>
+  <a href="index.html" class="nav-back">← Wszystkie projekty</a>
+</nav>
+
+<!-- COVER -->
+<!-- Tło: zmień kolor gradient lub dodaj <img class="cs-cover-img" src="cover.jpg"> -->
+<div class="cs-cover" style=" background: linear-gradient(135deg, #e7a89c 0%, #be6046 100%);">
+  <!-- <img class="cs-cover-img" src="TWOJ_SCREENSHOT_OKŁADKOWY.jpg" alt="SOMA cover"> -->
+  <div class="cs-cover-gradient"></div>
+
+  <div class="cs-cover-content">
+    <div class="cs-cover-meta">
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Projekt</span>
+        <span class="cs-meta-value">Strona internetowa</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Rok</span>
+        <span class="cs-meta-value">2026</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Narzędzia</span>
+        <span class="cs-meta-value">Figma</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Kategoria</span>
+        <span class="cs-meta-value">UX/UI · Desktop</span>
+      </div>
+    </div>
+
+    <h1 class="cs-cover-title">SOMA</h1>
+    <p class="cs-cover-sub">— strona internetowa z suplementami</p>
+
+    <div class="cs-cover-tags">
+      <span class="cs-tag">UX/UI</span>
+      <span class="cs-tag">Desktop</span>
+      <span class="cs-tag">Figma</span>
+      <span class="cs-tag">Wellness</span>
+    </div>
+  </div>
+
+  <span class="cs-page-num">01 / 06</span>
+</div>
+
+<!-- STATS STRIP -->
+<div class="cs-strip">
+  <div class="cs-stat">
+    <span class="cs-stat-val">Desktop</span>
+    <span class="cs-stat-lbl">Platforma</span>
+  </div>
+  <div class="cs-stat">
+    <span class="cs-stat-val">Figma</span>
+    <span class="cs-stat-lbl">Narzędzie</span>
+  </div>
+  <div class="cs-stat">
+    <span class="cs-stat-val">UX/UI</span>
+    <span class="cs-stat-lbl">Zakres</span>
+  </div>
+  <div class="cs-stat">
+    <span class="cs-stat-val">2025</span>
+    <span class="cs-stat-lbl">Rok</span>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<section class="cs-section reveal">
+  <div class="cs-2col">
+    <div>
+      <span class="eyebrow">Przegląd projektu</span>
+      <h2 class="cs-heading">O projekcie</h2>
+    </div>
+    <div class="cs-body">
+      <p>Projekt przedstawia nowoczesny landing page marki suplementów wellness skierowanej głównie do kobiet dbających o zdrowie i świadomą suplementację.</p>
+      <p>Głównym celem projektu było stworzenie przejrzystego, budzącego zaufanie doświadczenia, które ułatwia dobór suplementów dopasowanych do indywidualnych potrzeb organizmu. Warstwa wizualna łączy styl premium wellness z nowoczesnym interfejsem, tworząc ciekawy i przyjazny odbiór marki.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="cs-divider">
+
+<!-- GŁÓWNY SCREENSHOT (desktop) -->
+<div class="cs-screenshot-full">
+  <div class="cs-screenshot-inner reveal">
+    <div class="cs-screenshot-label">Widok główny — desktop</div>
+    <div class="cs-frame">
+      <div class="cs-frame-bar">
+        <div class="cs-frame-dot"></div>
+        <div class="cs-frame-dot"></div>
+        <div class="cs-frame-dot"></div>
+        <div class="cs-frame-url">soma-wellness.pl</div>
+      </div>
+      <!-- WSTAW SWÓJ SCREENSHOT: usuń cs-img-placeholder, dodaj <img class="cs-img" src="soma-desktop.jpg" alt="SOMA desktop"> -->
+      <div class="cs-img-placeholder">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C4BFB8" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <span>Wstaw screenshot: soma-desktop.jpg</span>
+      </div>
+    </div>
+
+    <!-- Dodatkowe screenshoty — siatka -->
+    <div class="cs-screens-grid" style="margin-top:1.5rem;">
+      <div class="cs-frame">
+        <div class="cs-frame-bar">
+          <div class="cs-frame-dot"></div><div class="cs-frame-dot"></div><div class="cs-frame-dot"></div>
+          <div class="cs-frame-url">soma-wellness.pl/shop</div>
+        </div>
+        <div class="cs-img-placeholder">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C4BFB8" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <span>Wstaw screenshot: soma-shop.jpg</span>
+        </div>
+      </div>
+      <div class="cs-frame">
+        <div class="cs-frame-bar">
+          <div class="cs-frame-dot"></div><div class="cs-frame-dot"></div><div class="cs-frame-dot"></div>
+          <div class="cs-frame-url">soma-wellness.pl/quiz</div>
+        </div>
+        <div class="cs-img-placeholder">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C4BFB8" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <span>Wstaw screenshot: soma-quiz.jpg</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHALLENGE / SOLUTION -->
+<section class="cs-section reveal">
+  <div class="cs-2col">
+    <div>
+      <span class="eyebrow">Wyzwanie</span>
+      <h2 class="cs-heading">Problem do rozwiązania</h2>
+    </div>
+    <div class="cs-body">
+      <p>Użytkownicy mają trudność z doborem odpowiednich suplementów — rynek jest przesycony ofertami, a brak spersonalizowanego podejścia powoduje frustrację i brak zaufania do marki.</p>
+      <p>Kluczowym wyzwaniem było zaprojektowanie ścieżki użytkownika, która w prosty sposób prowadzi od wejścia na stronę do świadomego wyboru produktu — bez przytłaczania informacją.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="cs-divider">
+
+<!-- PROCESS -->
+<section class="cs-section reveal" style="padding-bottom:0;">
+  <span class="eyebrow">Proces</span>
+  <h2 class="cs-heading">Przebieg pracy</h2>
+  <div class="cs-process">
+    <div class="cs-step">
+      <div class="cs-step-idx">01</div>
+      <div class="cs-step-title">Persona</div>
+      <div class="cs-step-desc">Stworzenie persony, która będzie przykładowym odbiorcą strony. W odpowiedzi na jej potrzeby i problemy opracowano use case oraz empathy map. W rezultacie zaproponowano odpowiednie rozwiązania projektowe (UX/UI).</div>
+      <div class="cs-step-line"></div>
+    </div>
+    <div class="cs-step">
+      <div class="cs-step-idx">02</div>
+      <div class="cs-step-title">Moodboard</div>
+      <div class="cs-step-desc">Ustalenie kierunku wizualnego — paleta, typografia, klimat marki.</div>
+      <div class="cs-step-line"></div>
+    </div>
+    <div class="cs-step">
+      <div class="cs-step-idx">03</div>
+      <div class="cs-step-title">Wireframes</div>
+      <div class="cs-step-desc">Szkice low-fi struktury strony, hierarchia treści, flow użytkownika.</div>
+      <div class="cs-step-line"></div>
+    </div>
+    <div class="cs-step">
+      <div class="cs-step-idx">04</div>
+      <div class="cs-step-title">Projekt UI</div>
+      <div class="cs-step-desc">High-fidelity w Figmie — komponenty, warianty, prototyp interaktywny.</div>
+      <div class="cs-step-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN DETAILS screenshot -->
+<div class="cs-screenshot-full" style="margin-top:1.5rem;">
+  <div class="cs-screenshot-inner reveal">
+    <div class="cs-screenshot-label">System kolorów i typografia</div>
+    <div class="cs-frame">
+      <div class="cs-frame-bar">
+        <div class="cs-frame-dot"></div><div class="cs-frame-dot"></div><div class="cs-frame-dot"></div>
+        <div class="cs-frame-url">Design System — SOMA</div>
+      </div>
+      <div class="cs-img-placeholder" style="aspect-ratio:21/9;">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C4BFB8" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        <span>Wstaw screenshot: soma-design-system.jpg</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REFLEKSJA -->
+<section class="cs-section reveal">
+  <div class="cs-2col">
+    <div>
+      <span class="eyebrow">Wnioski</span>
+      <h2 class="cs-heading">Czego się nauczyłam</h2>
+    </div>
+    <div class="cs-body">
+      <p>Projekt nauczył mnie jak ważna jest spójność wizualna w budowaniu zaufania do marki. Każdy element wpływa na doświadczenie klienta i zachęca go do stania się częścią społeczności.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT PROJECT -->
+<a href="projekt.html" class="cs-next">
+  <div>
+    <p class="cs-next-lbl">Następny projekt</p>
+    <h2 class="cs-next-title">GoodGut — aplikacja zdrowotna</h2>
+  </div>
+  <span class="cs-next-arr">↗</span>
+</a>
+
+<footer>
+  <span>© 2026 Julia Miłoś</span>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 80);
+  });
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
