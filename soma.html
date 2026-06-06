@@ -235,7 +235,65 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
 .cs-step-desc { font-size: 0.76rem; color: var(--muted); line-height: 1.65; }
 .cs-step-line { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: transparent; transition: background 0.3s; }
 .cs-step:hover .cs-step-line { background: var(--coral); }
+/* DESIGN SECTION */
+.cs-design-system {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 2rem;
+}
 
+/* TYPOGRAFIA */
+.cs-font {
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  background: var(--paper);
+  margin-bottom: 1rem;
+}
+
+.cs-font-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.cs-font-sample {
+  font-size: 1.2rem;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.cs-font-sample.serif {
+  font-family: serif;
+}
+
+.cs-font-note {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* KOLORY */
+.cs-color-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+.cs-color {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.cs-color-box {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
 /* ── OUTCOMES ── */
 .cs-outcomes {
   display: grid; grid-template-columns: repeat(4,1fr);
@@ -462,23 +520,60 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
   </div>
 </section>
 
-<!-- DESIGN DETAILS screenshot -->
-<div class="cs-screenshot-full" style="margin-top:1.5rem;">
-  <div class="cs-screenshot-inner reveal">
-    <div class="cs-screenshot-label">System kolorów i typografia</div>
-    <div class="cs-frame">
-      <div class="cs-frame-bar">
-        <div class="cs-frame-dot"></div><div class="cs-frame-dot"></div><div class="cs-frame-dot"></div>
-        <div class="cs-frame-url">Design System — SOMA</div>
-      </div>
-      <div class="cs-img-placeholder" style="aspect-ratio:21/9;">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C4BFB8" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-        <span>Wstaw screenshot: soma-design-system.jpg</span>
-      </div>
+<!-- DESIGN DETAILS -->
+<div class="cs-design-system">
+
+  <!-- TYPOGRAFIA -->
+  <div class="cs-typography">
+    <div class="cs-screenshot-label">Typografia</div>
+
+    <div class="cs-font">
+      <p class="cs-font-title">Kalnia</p>
+      <p class="cs-font-sample">Aa Bb Cc Dd Ee Ff 123</p>
+      <p class="cs-font-note">Nagłówki / UI</p>
+    </div>
+
+    <div class="cs-font">
+      <p class="cs-font-title">Onest</p>
+      <p class="cs-font-sample serif">Aa Bb Cc Dd Ee Ff 123</p>
+      <p class="cs-font-note">Teksty / treść</p>
     </div>
   </div>
-</div>
 
+  <!-- KOLORY -->
+  <div class="cs-colors">
+    <div class="cs-screenshot-label">Kolorystyka</div>
+
+    <div class="cs-color-grid">
+      <div class="cs-color">
+        <div class="cs-color-box" style="background:#bda633;"></div>
+        <span>#BDA633</span>
+      </div>
+
+      <div class="cs-color">
+        <div class="cs-color-box" style="background:#fff1e0; border:1px solid #ddd;"></div>
+        <span>#FFF1E0</span>
+      </div>
+
+      <div class="cs-color">
+        <div class="cs-color-box" style="background:#5e5220;"></div>
+        <span>#5E5220</span>
+      </div>
+
+      <div class="cs-color">
+        <div class="cs-color-box" style="background:#f06427;"></div>
+        <span>#FO6427</span>
+      </div>
+
+      <div class="cs-color">
+        <div class="cs-color-box" style="background:#Fad7d5; "></div>
+        <span>#FAD7D5</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>
 <!-- REFLEKSJA -->
 <section class="cs-section reveal">
   <div class="cs-2col">
@@ -496,7 +591,7 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
 <a href="projekt.html" class="cs-next">
   <div>
     <p class="cs-next-lbl">Następny projekt</p>
-    <h2 class="cs-next-title">GoodGut — aplikacja zdrowotna</h2>
+    <h2 class="cs-next-title">GOODGUT — aplikacja zdrowotna</h2>
   </div>
   <span class="cs-next-arr">↗</span>
 </a>
