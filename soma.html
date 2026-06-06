@@ -237,34 +237,45 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
 .cs-step:hover .cs-step-line { background: var(--coral); }
 /* DESIGN SECTION */
 .cs-design-system {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 3rem;
+  display: flex;
+  flex-direction: column;
   gap: 3rem;
-  margin-top: 2rem;
 }
 
-/* TYPOGRAFIA */
+/* TYPOGRAFIA — jedna pod drugą */
+.cs-typography {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
 .cs-font {
   padding: 1.5rem;
   border: 1px solid var(--border);
   background: var(--paper);
-  margin-bottom: 1rem;
+}
+
+/* fonty */
+.kalnia {
+  font-family: "Kalnia", serif;
+}
+
+.onest {
+  font-family: "Onest", sans-serif;
 }
 
 .cs-font-title {
   font-size: 0.9rem;
-  font-weight: 600;
   margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
 .cs-font-sample {
-  font-size: 1.2rem;
-  letter-spacing: 0.02em;
+  font-size: 1.3rem;
   margin-bottom: 0.5rem;
-}
-
-.cs-font-sample.serif {
-  font-family: serif;
 }
 
 .cs-font-note {
@@ -272,11 +283,11 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
   color: var(--muted);
 }
 
-/* KOLORY */
-.cs-color-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1rem;
+/* KOLORY — jeden rząd */
+.cs-color-row {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
 }
 
 .cs-color {
@@ -528,23 +539,23 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
     <div class="cs-screenshot-label">Typografia</div>
 
     <div class="cs-font">
-      <p class="cs-font-title">Kalnia</p>
-      <p class="cs-font-sample">Aa Bb Cc Dd Ee Ff 123</p>
-      <p class="cs-font-note">Nagłówki / UI</p>
+      <p class="cs-font-title kalnia">Kalnia</p>
+      <p class="cs-font-sample kalnia">Aa Bb Cc Dd Ee Ff 123</p>
+      <p class="cs-font-note">Nagłówki</p>
+    </div>
+    <div class="cs-font">
+      <p class="cs-font-title onest">Onest</p>
+      <p class="cs-font-sample onest">Aa Bb Cc Dd Ee Ff 123</p>
+      <p class="cs-font-note">Tekst / UI</p>
     </div>
 
-    <div class="cs-font">
-      <p class="cs-font-title">Onest</p>
-      <p class="cs-font-sample serif">Aa Bb Cc Dd Ee Ff 123</p>
-      <p class="cs-font-note">Teksty / treść</p>
-    </div>
   </div>
 
   <!-- KOLORY -->
   <div class="cs-colors">
     <div class="cs-screenshot-label">Kolorystyka</div>
+    <div class="cs-color-row"></div>
 
-    <div class="cs-color-grid">
       <div class="cs-color">
         <div class="cs-color-box" style="background:#bda633;"></div>
         <span>#BDA633</span>
