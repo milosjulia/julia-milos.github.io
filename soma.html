@@ -47,9 +47,16 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
   position: relative; overflow: hidden;
   display: flex; align-items: flex-end;
 }
+/* zdjęcie jako tło — position absolute żeby nie pchało treści */
+.cs-cover-bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  display: block;
+}
 .cs-cover-gradient {
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(20,20,16,0.75) 0%, rgba(20,20,16,0.1) 60%, transparent 100%);
+  background: linear-gradient(to top, rgba(20,20,16,0.82) 0%, rgba(20,20,16,0.35) 50%, rgba(20,20,16,0.1) 100%);
 }
 .cs-cover-content {
   position: relative; z-index: 10;
@@ -66,7 +73,7 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
 .cs-tag { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.25rem 0.75rem; border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.6); }
 .cs-page-num { position: absolute; bottom: 3rem; right: 3rem; z-index: 10; font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em; color: rgba(255,255,255,0.25); }
 
-/* STATS */
+/* STATS — czcionka jawnie ustawiona na --sans i --mono */
 .cs-strip { background: var(--ink); display: flex; }
 .cs-stat { flex: 1; padding: 1.75rem 2rem; border-right: 1px solid rgba(255,255,255,0.07); display: flex; flex-direction: column; gap: 0.25rem; }
 .cs-stat:last-child { border-right: none; }
@@ -91,26 +98,8 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
   display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem;
 }
 .cs-screenshot-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
-/* ramka przeglądarki */
 .cs-frame { border: 1px solid var(--border); background: var(--paper); overflow: hidden; }
-.cs-frame-bar {
-  height: 36px; background: var(--bg2); border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; padding: 0 1rem; gap: 0.4rem;
-}
-.cs-frame-dot { width: 10px; height: 10px; border-radius: 50%; }
-.cs-frame-dot:nth-child(1) { background: #EDADA0; }
-.cs-frame-dot:nth-child(2) { background: #EDD7A0; }
-.cs-frame-dot:nth-child(3) { background: #A0EDB8; }
-.cs-frame-url {
-  margin-left: 0.75rem; flex: 1; max-width: 300px; height: 20px;
-  background: var(--bg); border-radius: 4px;
-  display: flex; align-items: center; padding: 0 0.75rem;
-  font-family: var(--mono); font-size: 0.55rem; color: var(--light); letter-spacing: 0.04em;
-}
 .cs-img { width: 100%; display: block; height: auto; }
-
-/* siatka dodatkowych screenshotów */
 .cs-screens-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
 
 /* PROCESS */
@@ -119,8 +108,8 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
 .cs-step:last-child { border-right: none; }
 .cs-step:hover { background: var(--bg2); }
 .cs-step-idx { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.15em; color: var(--light); margin-bottom: 0.75rem; }
-.cs-step-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 0.4rem; }
-.cs-step-desc { font-size: 0.76rem; color: var(--muted); line-height: 1.65; }
+.cs-step-title { font-family: var(--sans); font-weight: 600; font-size: 0.85rem; margin-bottom: 0.4rem; }
+.cs-step-desc { font-family: var(--sans); font-size: 0.76rem; color: var(--muted); line-height: 1.65; font-weight: 400; }
 .cs-step-line { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: transparent; transition: background 0.3s; }
 .cs-step:hover .cs-step-line { background: var(--coral); }
 
@@ -134,23 +123,16 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
 }
 .cs-design-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 .cs-design-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
-
-/* blok tytułowy */
 .ds-block-title { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.25rem; }
-
-/* czcionki */
 .ds-fonts { display: flex; flex-direction: column; gap: 1rem; }
 .ds-font-item { padding: 1.5rem; border: 1px solid var(--border); background: var(--bg); }
 .ds-font-preview { font-size: 2.5rem; font-weight: 700; line-height: 1; margin-bottom: 0.4rem; letter-spacing: -0.01em; color: var(--ink); }
 .ds-font-name { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); font-weight: 500; }
-.ds-font-note { font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem; font-weight: 300; }
-
-/* kolory */
+.ds-font-note { font-family: var(--sans); font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem; font-weight: 300; }
 .ds-colors { display: flex; gap: 1rem; flex-wrap: wrap; }
-.ds-color-item { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+.ds-color-item { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
 .ds-color-swatch { width: 72px; height: 72px; border: 1px solid var(--border); }
-.ds-color-hex { font-family: var(--mono); font-size: 0.58rem; color: var(--muted); letter-spacing: 0.04em; }
-.ds-color-name { font-family: var(--mono); font-size: 0.6rem; color: var(--ink); font-weight: 500; text-align: center; }
+.ds-color-hex { font-family: var(--mono); font-size: 0.56rem; color: var(--muted); }
 
 /* NEXT */
 .cs-next { display: flex; justify-content: space-between; align-items: center; padding: 4rem 3rem; background: var(--paper); border-top: 1px solid var(--border); text-decoration: none; color: inherit; transition: background 0.3s; }
@@ -197,6 +179,9 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
 <div class="cs-cover">
   <img class="cs-cover-bg" src="soma_logo.png" alt="SOMA cover">
   <div class="cs-cover-gradient"></div>
+  <div class="cs-cover-content">
+    <div class="cs-cover-meta">
+      <div class="cs-meta-item">
         <span class="cs-meta-label">Projekt</span>
         <span class="cs-meta-value">Strona internetowa</span>
       </div>
@@ -264,14 +249,10 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
 <!-- SCREENSHOTY -->
 <div class="cs-screenshot-full">
   <div class="cs-screenshot-inner reveal">
-
-    <!-- screenshot główny -->
     <div class="cs-screenshot-label">Widok główny — desktop</div>
     <div class="cs-frame">
       <img class="cs-img" src="soma1.jpeg" alt="SOMA — widok główny">
     </div>
-
-    <!-- dwa dodatkowe screenshoty -->
     <div class="cs-screens-grid">
       <div class="cs-frame">
         <img class="cs-img" src="soma2.jpeg" alt="SOMA — sklep">
@@ -280,7 +261,6 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
         <img class="cs-img" src="soma3.jpeg" alt="SOMA — quiz">
       </div>
     </div>
-
   </div>
 </div>
 
@@ -338,27 +318,22 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
     <div class="cs-design-label">Design System</div>
     <div class="cs-design-grid">
 
-      <!-- CZCIONKI -->
-
       <div>
         <p class="ds-block-title">Typografia</p>
         <div class="ds-fonts">
-          <!-- czcionka 1 — zmień nazwę i font-family na tę z projektu -->
           <div class="ds-font-item">
-            <div class="ds-font-preview" style="font-family:'Kalnia';">Aa</div>
+            <div class="ds-font-preview">Aa</div>
             <div class="ds-font-name">Kalnia</div>
-            <div class="ds-font-sample">Nagłówki · Medium · Semibold</div>
+            <div class="ds-font-note">Nagłówki · Medium · Semibold</div>
           </div>
-          <!-- czcionka 2 -->
           <div class="ds-font-item">
-            <div class="ds-font-preview" style="font-family: 'Onest';">Aa</div>
+            <div class="ds-font-preview" style="font-weight:400;">Aa</div>
             <div class="ds-font-name">Onest</div>
-            <div class="ds-font-sample">Treść · Regular</div>
+            <div class="ds-font-note">Treść · Regular</div>
           </div>
         </div>
       </div>
 
-      <!-- KOLORY -->
       <div>
         <p class="ds-block-title">Kolorystyka</p>
         <div class="ds-colors">
