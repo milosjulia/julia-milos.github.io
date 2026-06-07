@@ -20,8 +20,6 @@
   --border:  rgba(28,28,26,0.12);
   --coral:   #be6046;
   --coral-l: #e7a89c;
-  --olive:   #C7B49D;
-  --burg:    #7C3230;
   --sans:    'Montserrat', sans-serif;
   --mono:    'Courier New', Courier, monospace;
   --ease:    cubic-bezier(0.4,0,0.2,1);
@@ -31,7 +29,7 @@
 html { scroll-behavior: smooth; }
 body { font-family: var(--sans); background: var(--bg); color: var(--ink); overflow-x: hidden; }
 
-/* ── NAV ── */
+/* NAV */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; justify-content: space-between; align-items: center;
@@ -43,23 +41,31 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
 .nav-back { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s; }
 .nav-back:hover { color: var(--ink); }
 
-/* ── COVER ── */
+/* COVER */
 .cs-cover {
   height: 100vh; min-height: 600px;
   position: relative; overflow: hidden;
   display: flex; align-items: flex-end;
 }
-/* zdjęcie tło */
+/* tło odsunięte — padding sprawia że zdjęcie nie wypełnia krawędzi */
 .cs-cover-bg {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: center;
+  position: absolute;
+  /* odstęp od krawędzi — dostosuj do uznania */
+  top: 6%; left: 5%; right: 5%; bottom: 0;
+  width: 90%; height: 94%;
+  object-fit: cover; object-position: center top;
   display: block;
+  border-radius: 8px;
 }
-/* gradient żeby tekst był czytelny */
 .cs-cover-gradient {
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(20,20,16,0.82) 0%, rgba(20,20,16,0.3) 50%, rgba(20,20,16,0.1) 100%);
+  background: linear-gradient(to top, rgba(20,20,16,0.88) 0%, rgba(20,20,16,0.4) 45%, rgba(20,20,16,0.15) 100%);
+}
+/* ciemne tło za zdjęciem */
+.cs-cover::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: #1A1714;
 }
 .cs-cover-content {
   position: relative; z-index: 10;
@@ -76,54 +82,23 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
 .cs-tag { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.25rem 0.75rem; border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.6); }
 .cs-page-num { position: absolute; bottom: 3rem; right: 3rem; z-index: 10; font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em; color: rgba(255,255,255,0.25); }
 
-/* ── STATS STRIP ── */
-.cs-strip {
-  background: var(--ink);
-  display: flex;
-}
-.cs-stat {
-  flex: 1; padding: 1.75rem 2rem;
-  border-right: 1px solid rgba(255,255,255,0.07);
-  display: flex; flex-direction: column; gap: 0.25rem;
-}
+/* STATS */
+.cs-strip { background: var(--ink); display: flex; }
+.cs-stat { flex: 1; padding: 1.75rem 2rem; border-right: 1px solid rgba(255,255,255,0.07); display: flex; flex-direction: column; gap: 0.25rem; }
 .cs-stat:last-child { border-right: none; }
-.cs-stat-val {
-  font-family: var(--sans); font-weight: 700; font-size: 1.6rem;
-  color: rgba(255,255,255,0.85); letter-spacing: -0.01em;
-}
-.cs-stat-lbl {
-  font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.16em;
-  text-transform: uppercase; color: rgba(255,255,255,0.3);
-}
+.cs-stat-val { font-family: var(--sans); font-weight: 700; font-size: 1.6rem; color: rgba(255,255,255,0.85); letter-spacing: -0.01em; }
+.cs-stat-lbl { font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
 
-/* ── SHARED ── */
+/* SHARED */
 .cs-section { padding: 5rem 3rem; max-width: var(--max); margin: 0 auto; }
 .eyebrow { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 0.6rem; }
 .cs-heading { font-family: var(--sans); font-weight: 700; font-size: clamp(1.8rem, 3.5vw, 3rem); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1.5rem; }
 .cs-body { font-size: 0.86rem; color: var(--muted); line-height: 1.9; font-weight: 400; }
 .cs-body p + p { margin-top: 1rem; }
-
 .cs-2col { display: grid; grid-template-columns: 1fr 1.8fr; gap: 5rem; align-items: start; }
 .cs-divider { border: none; border-top: 1px solid var(--border); margin: 0; }
 
-
-/* ── PROBLEM CARDS ── */
-.cs-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-top: 2rem; }
-.cs-card {
-  padding: 1.75rem; background: var(--paper); border: 1px solid var(--border);
-  position: relative; overflow: hidden; transition: border-color 0.3s;
-}
-.cs-card:hover { border-color: var(--coral); }
-.cs-card-num {
-  font-family: var(--sans); font-weight: 700; font-size: 3rem;
-  line-height: 1; color: var(--bg2); margin-bottom: 0.75rem;
-}
-.cs-card-title { font-weight: 600; font-size: 0.88rem; margin-bottom: 0.5rem; }
-.cs-card-text { font-size: 0.78rem; color: var(--muted); line-height: 1.7; }
-.cs-card-bar { position: absolute; top: 0; left: 0; width: 3px; height: 0; background: var(--coral); transition: height 0.4s var(--ease); }
-.cs-card:hover .cs-card-bar { height: 100%; }
-
-/* ── GALERIA SCREENSHOTÓW ── */
+/* GALERIA */
 .cs-gallery { background: var(--bg2); padding: 4rem 0; }
 .cs-gallery-inner { max-width: var(--max); margin: 0 auto; padding: 0 3rem; }
 .cs-gallery-label {
@@ -133,13 +108,31 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
 }
 .cs-gallery-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-/* siatka zdjęć 2 kolumny */
-.cs-img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-.cs-img-grid img { width: 100%; display: block; height: auto; border: 1px solid var(--border); }
+/* siatka 4 kolumny — screeny zmniejszone */
+.cs-img-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.cs-img-grid-4 img {
+  width: 100%; display: block; height: auto;
+  border: 1px solid var(--border);
+}
 
-/* pojedyncze zdjęcie na całą szerokość w galerii */
+/* siatka 2 kolumny — główne screeny (mniejsze niż domyślnie) */
+.cs-img-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 w rzędzie = mniejsze */
+  gap: 1rem;
+}
+.cs-img-grid-2 img {
+  width: 100%; display: block; height: auto;
+  border: 1px solid var(--border);
+}
+
 .cs-img-full { width: 100%; display: block; height: auto; border: 1px solid var(--border); margin-bottom: 1.5rem; }
-/* ── DESIGN SYSTEM ── */
+
+/* DESIGN SYSTEM */
 .cs-design { background: var(--paper); padding: 4rem 0; }
 .cs-design-inner { max-width: var(--max); margin: 0 auto; padding: 0 3rem; }
 .cs-design-label {
@@ -148,66 +141,50 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
   display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2.5rem;
 }
 .cs-design-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
 .cs-design-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-
-/* kolory */
 .ds-block-title { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
-
-.ds-colors { display: flex; gap: 1rem; }
-.ds-color-item { display: flex; flex-direction: column; gap: 0.5rem; }
-.ds-color-swatch { width: 80px; height: 80px; border: 1px solid var(--border); }
-.ds-color-name { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em; color: var(--ink); font-weight: 500; }
+.ds-colors { display: flex; gap: 1rem; flex-wrap: wrap; }
+.ds-color-item { display: flex; flex-direction: column; gap: 0.5rem; align-items: center; }
+.ds-color-swatch { width: 72px; height: 72px; border: 1px solid var(--border); }
 .ds-color-hex { font-family: var(--mono); font-size: 0.56rem; color: var(--muted); }
-
-/* czcionki */
-.ds-fonts { display: flex; flex-direction: column; gap: 1.5rem; }
+.ds-fonts { display: flex; flex-direction: column; gap: 1rem; }
 .ds-font-item { padding: 1.5rem; border: 1px solid var(--border); background: var(--bg); }
-.ds-font-preview { font-size: 2.2rem; font-weight: 700; line-height: 1; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+.ds-font-preview { font-size: 2.2rem; font-weight: 700; line-height: 1; margin-bottom: 0.5rem; letter-spacing: -0.01em; color: var(--ink); }
 .ds-font-name { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
-.ds-font-sample { font-size: 0.85rem; color: var(--muted); margin-top: 0.4rem; font-weight: 300; }
-/* ── PROCESS ── */
-.cs-process { display: flex; border: 1px solid var(--border); overflow: hidden; margin-top: 2rem; }
-.cs-step {
-  flex: 1; padding: 1.75rem 1.5rem; background: var(--paper);
-  border-right: 1px solid var(--border); position: relative;
-  transition: background 0.3s;
+.ds-font-sample { font-family: var(--sans); font-size: 0.78rem; color: var(--muted); margin-top: 0.4rem; font-weight: 300; }
+
+/* stare screeny — etykieta w sekcji challenge */
+.cs-old-label {
+  font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--muted);
+  display: flex; align-items: center; gap: 1.5rem;
+  margin-top: 2.5rem; margin-bottom: 1.25rem;
+  grid-column: 1 / -1; /* rozciągnij na całą szerokość 2col */
 }
+.cs-old-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* stare screeny — 4 obok siebie, rozpięte na pełną szerokość 2col */
+.cs-old-grid {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.cs-old-grid img { width: 100%; display: block; height: auto; border: 1px solid var(--border); }
+
+/* PROCESS */
+.cs-process { display: flex; border: 1px solid var(--border); overflow: hidden; margin-top: 2rem; }
+.cs-step { flex: 1; padding: 1.75rem 1.5rem; background: var(--paper); border-right: 1px solid var(--border); position: relative; transition: background 0.3s; }
 .cs-step:last-child { border-right: none; }
 .cs-step:hover { background: var(--bg2); }
 .cs-step-idx { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.15em; color: var(--light); margin-bottom: 0.75rem; }
-.cs-step-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 0.4rem; }
-.cs-step-desc { font-size: 0.76rem; color: var(--muted); line-height: 1.65; }
+.cs-step-title { font-family: var(--sans); font-weight: 600; font-size: 0.85rem; margin-bottom: 0.4rem; }
+.cs-step-desc { font-family: var(--sans); font-size: 0.76rem; color: var(--muted); line-height: 1.65; font-weight: 400; }
 .cs-step-line { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: transparent; transition: background 0.3s; }
 .cs-step:hover .cs-step-line { background: var(--coral); }
 
-/* ── OUTCOMES ── */
-.cs-outcomes {
-  display: grid; grid-template-columns: repeat(4,1fr);
-  border: 1px solid var(--border); background: var(--paper); margin-top: 3rem;
-}
-.cs-outcome { padding: 2rem 1.5rem; border-right: 1px solid var(--border); text-align: center; }
-.cs-outcome:last-child { border-right: none; }
-.cs-outcome-val { font-family: var(--sans); font-weight: 700; font-size: 2.5rem; color: var(--coral); line-height: 1; }
-.cs-outcome-lbl { font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 0.4rem; line-height: 1.6; }
-
-/* ── QUOTE ── */
-.cs-quote { padding: 0 3rem 5rem; max-width: var(--max); margin: 0 auto; }
-.cs-quote-box {
-  padding: 2.5rem; border: 1px solid var(--border);
-  border-top: 3px solid var(--coral); background: var(--paper);
-  display: grid; grid-template-columns: auto 1fr; gap: 1.75rem; align-items: start;
-}
-.cs-quote-mark { font-family: var(--sans); font-size: 5rem; line-height: 0.75; color: var(--coral-l); font-weight: 700; }
-.cs-quote-text { font-size: 1rem; font-style: italic; font-weight: 300; line-height: 1.75; color: var(--ink); margin-bottom: 0.75rem; }
-.cs-quote-by { font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
-
-/* ── NEXT PROJECT ── */
-.cs-next {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 4rem 3rem; background: var(--paper); border-top: 1px solid var(--border);
-  text-decoration: none; color: inherit; transition: background 0.3s;
-}
+/* NEXT */
+.cs-next { display: flex; justify-content: space-between; align-items: center; padding: 4rem 3rem; background: var(--paper); border-top: 1px solid var(--border); text-decoration: none; color: inherit; transition: background 0.3s; }
 .cs-next:hover { background: var(--bg2); }
 .cs-next-lbl { font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
 .cs-next-title { font-family: var(--sans); font-weight: 700; font-size: clamp(1.8rem, 3.5vw, 3rem); letter-spacing: -0.02em; transition: color 0.3s; }
@@ -215,31 +192,27 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
 .cs-next-arr { font-size: 2.5rem; color: var(--light); transition: transform 0.3s, color 0.3s; }
 .cs-next:hover .cs-next-arr { transform: translate(6px,-6px); color: var(--coral); }
 
-/* ── FOOTER ── */
+/* FOOTER */
 footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 0.58rem; color: var(--light); letter-spacing: 0.1em; text-transform: uppercase; }
 
-/* ── REVEAL ── */
+/* REVEAL */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
 .reveal.visible { opacity: 1; transform: none; }
 
-/* ── MOBILE ── */
+/* MOBILE */
 @media (max-width: 900px) {
   nav { padding: 1.2rem 1.5rem; }
+  .cs-cover-bg { top: 3%; left: 2%; right: 2%; width: 96%; height: 97%; }
   .cs-cover-content { padding: 0 1.5rem 3.5rem; }
   .cs-strip { flex-wrap: wrap; }
   .cs-stat { border-bottom: 1px solid rgba(255,255,255,0.07); min-width: 50%; }
   .cs-section { padding: 3.5rem 1.5rem; }
   .cs-2col { grid-template-columns: 1fr; gap: 2rem; }
-  .cs-cards { grid-template-columns: 1fr; }
   .cs-process { flex-direction: column; }
   .cs-step { border-right: 1px solid var(--border); border-bottom: none; }
-  .cs-outcomes { grid-template-columns: 1fr 1fr; }
-  .cs-outcome:nth-child(2) { border-right: none; }
-  .cs-outcome:nth-child(3) { border-top: 1px solid var(--border); }
-  .cs-outcome:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
-  .cs-screenshot-inner { padding: 0 1.5rem; }
-  .cs-screens-grid { grid-template-columns: 1fr; }
-  .cs-quote { padding: 0 1.5rem 4rem; }
+  .cs-gallery-inner, .cs-design-inner { padding: 0 1.5rem; }
+  .cs-img-grid-2, .cs-img-grid-4, .cs-old-grid { grid-template-columns: repeat(2, 1fr); }
+  .cs-design-grid { grid-template-columns: 1fr; gap: 2rem; }
   .cs-next { padding: 3rem 1.5rem; flex-direction: column; align-items: flex-start; gap: 1rem; }
   footer { flex-direction: column; gap: 0.5rem; }
 }
@@ -247,17 +220,15 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
 </head>
 <body>
 
-<!-- NAV -->
 <nav id="nav">
   <a href="index.html" class="nav-logo">Julia Miłoś</a>
   <a href="index.html" class="nav-back">← Wszystkie projekty</a>
 </nav>
 
-<!-- COVER -->
+<!-- COVER — zdjęcie odsunięte od krawędzi -->
 <div class="cs-cover">
-  <img class="cs-cover-bg" src="MBlogo.png" alt="mb cover">
+  <img class="cs-cover-bg" src="MBlogo.png" alt="MyBus cover">
   <div class="cs-cover-gradient"></div>
-
   <div class="cs-cover-content">
     <div class="cs-cover-meta">
       <div class="cs-meta-item">
@@ -277,22 +248,19 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
         <span class="cs-meta-value">UX/UI</span>
       </div>
     </div>
-
     <h1 class="cs-cover-title">MyBus</h1>
     <p class="cs-cover-sub">— aplikacja transportu publicznego</p>
-
     <div class="cs-cover-tags">
-        <span class="cs-tag">Mobile</span>
+      <span class="cs-tag">Mobile</span>
       <span class="cs-tag">UX/UI</span>
       <span class="cs-tag">Figma</span>
       <span class="cs-tag">Transport</span>
     </div>
   </div>
-
   <span class="cs-page-num">04 / 06</span>
 </div>
 
-<!-- STATS STRIP -->
+<!-- STATS -->
 <div class="cs-strip">
   <div class="cs-stat">
     <span class="cs-stat-val">Mobile</span>
@@ -320,27 +288,23 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
       <h2 class="cs-heading">O projekcie</h2>
     </div>
     <div class="cs-body">
-      <p>Celem redesignu aplikacji MyBus jest poprawa GoodGut jest użyteczności i komfortu użytkowania.Przeanalizowano istniejące problemy interfejsu, a następnie zaprojektowano nowoczesny i bardziej intuicyjny układ ekranów, usprawniając wyszukiwanie połączeń, planowanie podróży oraz dostęp do najważniejszych informacji.</p>
+      <p>Celem redesignu aplikacji MyBus jest poprawa użyteczności i komfortu użytkowania. Przeanalizowano istniejące problemy interfejsu, a następnie zaprojektowano nowoczesny i bardziej intuicyjny układ ekranów, usprawniając wyszukiwanie połączeń, planowanie podróży oraz dostęp do najważniejszych informacji.</p>
     </div>
   </div>
 </section>
 
 <hr class="cs-divider">
 
-<hr class="cs-divider">
-
-<!-- GALERIA MOCKUPÓW -->
+<!-- GALERIA — screeny nowego projektu (4 w rzędzie = mniejsze) -->
 <div class="cs-gallery">
   <div class="cs-gallery-inner reveal">
     <div class="cs-gallery-label">Logo główne</div>
-    <!-- pełna szerokość -->
     <img class="cs-img-full" src="MBlogo.png" alt="Logo główne">
 
-    <div class="cs-gallery-label">Podstrony</div>
-    <!-- siatka 2x2 -->
-    <div class="cs-img-grid">
-      <img src="glowna1.png" alt="Główna - 1">
-      <img src="glowna2.png" alt="Główna - 2">
+    <div class="cs-gallery-label">Podstrony — nowy design</div>
+    <div class="cs-img-grid-2">
+      <img src="glowna1.png" alt="Główna 1">
+      <img src="glowna2.png" alt="Główna 2">
       <img src="szukaj.png" alt="Wyszukiwanie">
       <img src="widok.png" alt="Widok wyszukiwania">
       <img src="trasa.png" alt="Wyznacz trasę">
@@ -351,49 +315,44 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
   </div>
 </div>
 
-<!-- DESIGN SYSTEM — kolory + czcionki -->
+<!-- DESIGN SYSTEM -->
 <div class="cs-design">
   <div class="cs-design-inner reveal">
     <div class="cs-design-label">Design System</div>
     <div class="cs-design-grid">
 
-      <!-- KOLORY -->
       <div>
         <p class="ds-block-title">Paleta kolorów</p>
         <div class="ds-colors">
-          <!-- zmień hex i nazwę na swoje kolory z projektu -->
           <div class="ds-color-item">
-            <div class="ds-color-swatch" style="background: #01408D;"></div>
+            <div class="ds-color-swatch" style="background:#01408D;"></div>
             <span class="ds-color-hex">#01408D</span>
           </div>
           <div class="ds-color-item">
-            <div class="ds-color-swatch" style="background: #CADDFE;"></div>
+            <div class="ds-color-swatch" style="background:#CADDFE;"></div>
             <span class="ds-color-hex">#CADDFE</span>
           </div>
           <div class="ds-color-item">
-            <div class="ds-color-swatch" style="background: #E75234;"></div>
+            <div class="ds-color-swatch" style="background:#E75234;"></div>
             <span class="ds-color-hex">#E75234</span>
           </div>
           <div class="ds-color-item">
-            <div class="ds-color-swatch" style="background: #FFF8F0;"></div>
+            <div class="ds-color-swatch" style="background:#FFF8F0; border:1px solid #ddd;"></div>
             <span class="ds-color-hex">#FFF8F0</span>
           </div>
         </div>
       </div>
 
-      <!-- CZCIONKI -->
       <div>
         <p class="ds-block-title">Typografia</p>
         <div class="ds-fonts">
-          <!-- czcionka 1 — zmień nazwę i font-family na tę z projektu -->
           <div class="ds-font-item">
-            <div class="ds-font-preview" style="font-family: 'Unbounded';">Aa</div>
-            <div class="ds-font-name">Unvounded</div>
+            <div class="ds-font-preview">Aa</div>
+            <div class="ds-font-name">Unbounded</div>
             <div class="ds-font-sample">Nagłówki · Regular · ExtraBold</div>
           </div>
-          <!-- czcionka 2 -->
           <div class="ds-font-item">
-            <div class="ds-font-preview" style="font-family: 'Onest', monospace; font-weight: 400;">Aa</div>
+            <div class="ds-font-preview" style="font-weight:400;">Aa</div>
             <div class="ds-font-name">Onest</div>
             <div class="ds-font-sample">Treść · Medium</div>
           </div>
@@ -404,7 +363,7 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
   </div>
 </div>
 
-<!-- CHALLENGE / SOLUTION -->
+<!-- CHALLENGE + stare screeny -->
 <section class="cs-section reveal">
   <div class="cs-2col">
     <div>
@@ -413,18 +372,17 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
     </div>
     <div class="cs-body">
       <p>Analiza istniejącej wersji wykazała problemy związane z nieintuicyjną nawigacją, przeładowanym układem informacji oraz brakiem funkcji wspierających użytkownika w czasie rzeczywistym. Aplikacja nie śledziła aktualnego czasu podróży, utrudniała szybki dostęp do najważniejszych informacji i nie oferowała cyfrowego portfela do przechowywania biletów.</p>
-      <p>W ramach projektu przeprojektowano architekturę informacji, uproszczono interfejs oraz dodano funkcje takie jak śledzenie przejazdu w czasie rzeczywistym, cyfrowy portfel biletów oraz bardziej przejrzysty system planowania podróży. Efektem było stworzenie nowoczesnego, intuicyjnego rozwiązania odpowiadającego na potrzeby codziennych użytkowników komunikacji miejskiej.</p>
-    </div>
-   
-    <div class="cs-gallery-label">Wygląd aplikacji przed redesignem</div>
-    <!-- siatka 2x2 -->
-    <div class="cs-img-grid">
-      <img src="stare1.png" alt="prev1">
-      <img src="stare2.png" alt="prev2">
-      <img src="stare3.png" alt="prev3">
-      <img src="stare4.png" alt="prev4">
+      <p>W ramach projektu przeprojektowano architekturę informacji, uproszczono interfejs oraz dodano funkcje takie jak śledzenie przejazdu w czasie rzeczywistym, cyfrowy portfel biletów oraz bardziej przejrzysty system planowania podróży.</p>
     </div>
 
+    <!-- etykieta i siatka rozciągają się na obie kolumny -->
+    <div class="cs-old-label">Wygląd aplikacji przed redesignem</div>
+    <div class="cs-old-grid">
+      <img src="stare1.png" alt="Stary wygląd 1">
+      <img src="stare2.png" alt="Stary wygląd 2">
+      <img src="stare3.png" alt="Stary wygląd 3">
+      <img src="stare4.png" alt="Stary wygląd 4">
+    </div>
   </div>
 </section>
 
@@ -438,13 +396,13 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
     <div class="cs-step">
       <div class="cs-step-idx">01</div>
       <div class="cs-step-title">Analiza</div>
-      <div class="cs-step-desc">Przeprowadzenie badań wśród osób poruszających się komunikacją miejską. Na podstawie ankiety i zebranych opinii użytkowników zidentyfikowano główne trudności. </div>
+      <div class="cs-step-desc">Przeprowadzenie badań wśród osób poruszających się komunikacją miejską. Na podstawie ankiety i zebranych opinii użytkowników zidentyfikowano główne trudności.</div>
       <div class="cs-step-line"></div>
     </div>
     <div class="cs-step">
       <div class="cs-step-idx">02</div>
       <div class="cs-step-title">Opracowanie funkcjonalności</div>
-      <div class="cs-step-desc">Na podstawie wyników ankiety przeprowadzonej wśród użytkowników oraz analizy istniejących funkcji aplikacji opracowano nową koncepcję interfejsu, odpowiadającą na najczęściej zgłaszane problemy związane z użytecznością, dostępnością informacji oraz planowaniem podróży.</div>
+      <div class="cs-step-desc">Na podstawie wyników ankiety oraz analizy istniejących funkcji opracowano nową koncepcję interfejsu odpowiadającą na zgłaszane problemy.</div>
       <div class="cs-step-line"></div>
     </div>
     <div class="cs-step">
@@ -462,9 +420,7 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
   </div>
 </section>
 
-
-
-<!-- REFLEKSJA -->
+<!-- WNIOSKI -->
 <section class="cs-section reveal">
   <div class="cs-2col">
     <div>
@@ -477,11 +433,11 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
   </div>
 </section>
 
-<!-- NEXT PROJECT -->
+<!-- NEXT -->
 <a href="BB.html" class="cs-next">
   <div>
     <p class="cs-next-lbl">Następny projekt</p>
-    <h2 class="cs-next-title">Breathe&Balance - strona internetowa studia jogi</h2>
+    <h2 class="cs-next-title">Breathe&amp;Balance — strona studia jogi</h2>
   </div>
   <span class="cs-next-arr">↗</span>
 </a>
