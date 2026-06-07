@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Breathe&Balance Julia Miłoś</title>
+<title>Breathe&Balance — Julia Miłoś</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
@@ -20,8 +20,6 @@
   --border:  rgba(28,28,26,0.12);
   --coral:   #be6046;
   --coral-l: #e7a89c;
-  --olive:   #C7B49D;
-  --burg:    #7C3230;
   --sans:    'Montserrat', sans-serif;
   --mono:    'Courier New', Courier, monospace;
   --ease:    cubic-bezier(0.4,0,0.2,1);
@@ -31,7 +29,7 @@
 html { scroll-behavior: smooth; }
 body { font-family: var(--sans); background: var(--bg); color: var(--ink); overflow-x: hidden; }
 
-/* ── NAV ── */
+/* NAV */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; justify-content: space-between; align-items: center;
@@ -43,31 +41,21 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
 .nav-back { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s; }
 .nav-back:hover { color: var(--ink); }
 
-/* COVER */
+/* COVER — pełny ekran, bez odsunięcia */
 .cs-cover {
   height: 100vh; min-height: 600px;
   position: relative; overflow: hidden;
   display: flex; align-items: flex-end;
 }
-/* tło odsunięte — padding sprawia że zdjęcie nie wypełnia krawędzi */
 .cs-cover-bg {
-  position: absolute;
-  /* odstęp od krawędzi — dostosuj do uznania */
-  top: 6%; left: 5%; right: 5%; bottom: 0;
-  width: 90%; height: 94%;
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
   object-fit: cover; object-position: center top;
   display: block;
-  border-radius: 8px;
 }
 .cs-cover-gradient {
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(20,20,16,0.88) 0%, rgba(20,20,16,0.4) 45%, rgba(20,20,16,0.15) 100%);
-}
-/* ciemne tło za zdjęciem */
-.cs-cover::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: #1A1714;
+  background: linear-gradient(to top, rgba(20,20,16,0.88) 0%, rgba(20,20,16,0.4) 50%, rgba(20,20,16,0.1) 100%);
 }
 .cs-cover-content {
   position: relative; z-index: 10;
@@ -78,40 +66,27 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
 .cs-meta-item { display: flex; flex-direction: column; gap: 0.2rem; }
 .cs-meta-label { font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
 .cs-meta-value { font-size: 0.82rem; font-weight: 400; color: rgba(255,255,255,0.85); }
-.cs-cover-title { font-family: var(--sans); font-weight: 700; font-size: clamp(3.5rem, 8vw, 7.5rem); letter-spacing: -0.02em; line-height: 0.95; color: #fff; }
+.cs-cover-title { font-family: var(--sans); font-weight: 700; font-size: clamp(3rem, 7vw, 7rem); letter-spacing: -0.02em; line-height: 0.95; color: #fff; }
 .cs-cover-sub { font-size: 1rem; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.55); letter-spacing: 0.04em; }
 .cs-cover-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 .cs-tag { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.25rem 0.75rem; border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.6); }
 .cs-page-num { position: absolute; bottom: 3rem; right: 3rem; z-index: 10; font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em; color: rgba(255,255,255,0.25); }
 
-
-/* ── STATS STRIP ── */
-.cs-strip {
-  background: var(--ink);
-  display: flex;
-}
-.cs-stat {
-  flex: 1; padding: 1.75rem 2rem;
-  border-right: 1px solid rgba(255,255,255,0.07);
-  display: flex; flex-direction: column; gap: 0.25rem;
-}
+/* STATS */
+.cs-strip { background: var(--ink); display: flex; }
+.cs-stat { flex: 1; padding: 1.75rem 2rem; border-right: 1px solid rgba(255,255,255,0.07); display: flex; flex-direction: column; gap: 0.25rem; }
 .cs-stat:last-child { border-right: none; }
-.cs-stat-val {
-  font-family: var(--sans); font-weight: 700; font-size: 1.6rem;
-  color: rgba(255,255,255,0.85); letter-spacing: -0.01em;
-}
-.cs-stat-lbl {
-  font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.16em;
-  text-transform: uppercase; color: rgba(255,255,255,0.3);
-}
+.cs-stat-val { font-family: var(--sans); font-weight: 700; font-size: 1.3rem; color: rgba(255,255,255,0.85); letter-spacing: -0.01em; line-height: 1.2; }
+.cs-stat-lbl { font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
 
-/* ── SHARED ── */
+/* SHARED */
 .cs-section { padding: 5rem 3rem; max-width: var(--max); margin: 0 auto; }
 .eyebrow { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 0.6rem; }
 .cs-heading { font-family: var(--sans); font-weight: 700; font-size: clamp(1.8rem, 3.5vw, 3rem); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1.5rem; }
 .cs-body { font-size: 0.86rem; color: var(--muted); line-height: 1.9; font-weight: 400; }
 .cs-body p + p { margin-top: 1rem; }
-
+.cs-body a { color: var(--coral); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+.cs-body a:hover { border-bottom-color: var(--coral); }
 .cs-2col { display: grid; grid-template-columns: 1fr 1.8fr; gap: 5rem; align-items: start; }
 .cs-divider { border: none; border-top: 1px solid var(--border); margin: 0; }
 
@@ -121,33 +96,24 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
 .cs-gallery-label {
   font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--muted);
-  display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem;
+  display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;
 }
 .cs-gallery-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-/* siatka 4 kolumny — screeny zmniejszone */
-.cs-img-grid-4 {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-}
-.cs-img-grid-4 img {
-  width: 100%; display: block; height: auto;
-  border: 1px solid var(--border);
-}
-
-/* siatka 2 kolumny — główne screeny (mniejsze niż domyślnie) */
-.cs-img-grid-2 {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 w rzędzie = mniejsze */
-  gap: 1rem;
-}
-.cs-img-grid-2 img {
-  width: 100%; display: block; height: auto;
-  border: 1px solid var(--border);
-}
-
+/* pełna szerokość */
 .cs-img-full { width: 100%; display: block; height: auto; border: 1px solid var(--border); margin-bottom: 1.5rem; }
+
+/* 2 kolumny — czytelne screenshoty desktopowe */
+.cs-grid-2 {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.5rem;
+}
+.cs-grid-2 img { width: 100%; display: block; height: auto; border: 1px solid var(--border); }
+
+/* 3 kolumny — dla mniejszych screenshotów panelu */
+.cs-grid-3 {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 1.5rem;
+}
+.cs-grid-3 img { width: 100%; display: block; height: auto; border: 1px solid var(--border); }
 
 /* DESIGN SYSTEM */
 .cs-design { background: var(--paper); padding: 4rem 0; }
@@ -169,64 +135,20 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
 .ds-font-preview { font-size: 2.2rem; font-weight: 700; line-height: 1; margin-bottom: 0.5rem; letter-spacing: -0.01em; color: var(--ink); }
 .ds-font-name { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
 .ds-font-sample { font-family: var(--sans); font-size: 0.78rem; color: var(--muted); margin-top: 0.4rem; font-weight: 300; }
-/* ── PROBLEM CARDS ── */
-.cs-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-top: 2rem; }
-.cs-card {
-  padding: 1.75rem; background: var(--paper); border: 1px solid var(--border);
-  position: relative; overflow: hidden; transition: border-color 0.3s;
-}
-.cs-card:hover { border-color: var(--coral); }
-.cs-card-num {
-  font-family: var(--sans); font-weight: 700; font-size: 3rem;
-  line-height: 1; color: var(--bg2); margin-bottom: 0.75rem;
-}
-.cs-card-title { font-weight: 600; font-size: 0.88rem; margin-bottom: 0.5rem; }
-.cs-card-text { font-size: 0.78rem; color: var(--muted); line-height: 1.7; }
-.cs-card-bar { position: absolute; top: 0; left: 0; width: 3px; height: 0; background: var(--coral); transition: height 0.4s var(--ease); }
-.cs-card:hover .cs-card-bar { height: 100%; }
 
-/* ── PROCESS ── */
+/* PROCESS */
 .cs-process { display: flex; border: 1px solid var(--border); overflow: hidden; margin-top: 2rem; }
-.cs-step {
-  flex: 1; padding: 1.75rem 1.5rem; background: var(--paper);
-  border-right: 1px solid var(--border); position: relative;
-  transition: background 0.3s;
-}
+.cs-step { flex: 1; padding: 1.75rem 1.5rem; background: var(--paper); border-right: 1px solid var(--border); position: relative; transition: background 0.3s; }
 .cs-step:last-child { border-right: none; }
 .cs-step:hover { background: var(--bg2); }
 .cs-step-idx { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.15em; color: var(--light); margin-bottom: 0.75rem; }
-.cs-step-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 0.4rem; }
-.cs-step-desc { font-size: 0.76rem; color: var(--muted); line-height: 1.65; }
+.cs-step-title { font-family: var(--sans); font-weight: 600; font-size: 0.85rem; margin-bottom: 0.4rem; }
+.cs-step-desc { font-family: var(--sans); font-size: 0.76rem; color: var(--muted); line-height: 1.65; font-weight: 400; }
 .cs-step-line { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: transparent; transition: background 0.3s; }
 .cs-step:hover .cs-step-line { background: var(--coral); }
 
-/* ── OUTCOMES ── */
-.cs-outcomes {
-  display: grid; grid-template-columns: repeat(4,1fr);
-  border: 1px solid var(--border); background: var(--paper); margin-top: 3rem;
-}
-.cs-outcome { padding: 2rem 1.5rem; border-right: 1px solid var(--border); text-align: center; }
-.cs-outcome:last-child { border-right: none; }
-.cs-outcome-val { font-family: var(--sans); font-weight: 700; font-size: 2.5rem; color: var(--coral); line-height: 1; }
-.cs-outcome-lbl { font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 0.4rem; line-height: 1.6; }
-
-/* ── QUOTE ── */
-.cs-quote { padding: 0 3rem 5rem; max-width: var(--max); margin: 0 auto; }
-.cs-quote-box {
-  padding: 2.5rem; border: 1px solid var(--border);
-  border-top: 3px solid var(--coral); background: var(--paper);
-  display: grid; grid-template-columns: auto 1fr; gap: 1.75rem; align-items: start;
-}
-.cs-quote-mark { font-family: var(--sans); font-size: 5rem; line-height: 0.75; color: var(--coral-l); font-weight: 700; }
-.cs-quote-text { font-size: 1rem; font-style: italic; font-weight: 300; line-height: 1.75; color: var(--ink); margin-bottom: 0.75rem; }
-.cs-quote-by { font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
-
-/* ── NEXT PROJECT ── */
-.cs-next {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 4rem 3rem; background: var(--paper); border-top: 1px solid var(--border);
-  text-decoration: none; color: inherit; transition: background 0.3s;
-}
+/* NEXT */
+.cs-next { display: flex; justify-content: space-between; align-items: center; padding: 4rem 3rem; background: var(--paper); border-top: 1px solid var(--border); text-decoration: none; color: inherit; transition: background 0.3s; }
 .cs-next:hover { background: var(--bg2); }
 .cs-next-lbl { font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
 .cs-next-title { font-family: var(--sans); font-weight: 700; font-size: clamp(1.8rem, 3.5vw, 3rem); letter-spacing: -0.02em; transition: color 0.3s; }
@@ -234,14 +156,14 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
 .cs-next-arr { font-size: 2.5rem; color: var(--light); transition: transform 0.3s, color 0.3s; }
 .cs-next:hover .cs-next-arr { transform: translate(6px,-6px); color: var(--coral); }
 
-/* ── FOOTER ── */
+/* FOOTER */
 footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 0.58rem; color: var(--light); letter-spacing: 0.1em; text-transform: uppercase; }
 
-/* ── REVEAL ── */
+/* REVEAL */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
 .reveal.visible { opacity: 1; transform: none; }
 
-/* ── MOBILE ── */
+/* MOBILE */
 @media (max-width: 900px) {
   nav { padding: 1.2rem 1.5rem; }
   .cs-cover-content { padding: 0 1.5rem 3.5rem; }
@@ -249,16 +171,12 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
   .cs-stat { border-bottom: 1px solid rgba(255,255,255,0.07); min-width: 50%; }
   .cs-section { padding: 3.5rem 1.5rem; }
   .cs-2col { grid-template-columns: 1fr; gap: 2rem; }
-  .cs-cards { grid-template-columns: 1fr; }
   .cs-process { flex-direction: column; }
   .cs-step { border-right: 1px solid var(--border); border-bottom: none; }
-  .cs-outcomes { grid-template-columns: 1fr 1fr; }
-  .cs-outcome:nth-child(2) { border-right: none; }
-  .cs-outcome:nth-child(3) { border-top: 1px solid var(--border); }
-  .cs-outcome:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
-  .cs-screenshot-inner { padding: 0 1.5rem; }
-  .cs-screens-grid { grid-template-columns: 1fr; }
-  .cs-quote { padding: 0 1.5rem 4rem; }
+  .cs-gallery-inner, .cs-design-inner { padding: 0 1.5rem; }
+  .cs-grid-2 { grid-template-columns: 1fr; }
+  .cs-grid-3 { grid-template-columns: 1fr 1fr; }
+  .cs-design-grid { grid-template-columns: 1fr; gap: 2rem; }
   .cs-next { padding: 3rem 1.5rem; flex-direction: column; align-items: flex-start; gap: 1rem; }
   footer { flex-direction: column; gap: 0.5rem; }
 }
@@ -266,17 +184,15 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
 </head>
 <body>
 
-<!-- NAV -->
 <nav id="nav">
   <a href="index.html" class="nav-logo">Julia Miłoś</a>
   <a href="index.html" class="nav-back">← Wszystkie projekty</a>
 </nav>
 
-<!-- COVER -->
+<!-- COVER — pełny ekran -->
 <div class="cs-cover">
-  <img class="cs-cover-bg" src="main1.png" alt="Złoty Zakwas cover">
+  <img class="cs-cover-bg" src="main1.png" alt="Breathe&Balance cover">
   <div class="cs-cover-gradient"></div>
-
   <div class="cs-cover-content">
     <div class="cs-cover-meta">
       <div class="cs-meta-item">
@@ -289,37 +205,34 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
       </div>
       <div class="cs-meta-item">
         <span class="cs-meta-label">Narzędzia</span>
-        <span class="cs-meta-value">HTML, CSS, MySQL</span>
+        <span class="cs-meta-value">HTML · CSS · MySQL</span>
       </div>
       <div class="cs-meta-item">
         <span class="cs-meta-label">Kategoria</span>
         <span class="cs-meta-value">UX/UI</span>
       </div>
     </div>
-
-    <h1 class="cs-cover-title">Breathe&Balance</h1>
+    <h1 class="cs-cover-title">Breathe&amp;Balance</h1>
     <p class="cs-cover-sub">— strona internetowa studia jogi</p>
-
     <div class="cs-cover-tags">
-        <span class="cs-tag">Desktop</span>
+      <span class="cs-tag">Desktop</span>
       <span class="cs-tag">UX/UI</span>
-      <span class="cs-tag">HTML, CSS, MySQL</span>
+      <span class="cs-tag">HTML · CSS · MySQL</span>
       <span class="cs-tag">Wellness</span>
     </div>
   </div>
-
   <span class="cs-page-num">05 / 06</span>
 </div>
 
-<!-- STATS STRIP -->
+<!-- STATS -->
 <div class="cs-strip">
   <div class="cs-stat">
     <span class="cs-stat-val">Desktop</span>
     <span class="cs-stat-lbl">Platforma</span>
   </div>
   <div class="cs-stat">
-    <span class="cs-stat-val">HTML, CSS, MySQL</span>
-    <span class="cs-stat-lbl">Narzędzie</span>
+    <span class="cs-stat-val">HTML · CSS · MySQL</span>
+    <span class="cs-stat-lbl">Narzędzia</span>
   </div>
   <div class="cs-stat">
     <span class="cs-stat-val">UX/UI</span>
@@ -339,48 +252,45 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
       <h2 class="cs-heading">O projekcie</h2>
     </div>
     <div class="cs-body">
-      <p>Projekt responsywnej strony internetowej dla studia Breathe&Balance skupiony jest na przejrzystej prezentacji oferty zajęć, harmonogramu oraz możliwości zapisów. W projekcie zadbano o intuicyjną nawigację, estetyczny wygląd oraz spokojną, harmonijną identyfikację wizualną odpowiadającą charakterowi studia. </p>
+      <p>Projekt responsywnej strony internetowej dla studia Breathe&amp;Balance skupiony jest na przejrzystej prezentacji oferty zajęć, harmonogramu oraz możliwości zapisów. W projekcie zadbano o intuicyjną nawigację, estetyczny wygląd oraz spokojną, harmonijną identyfikację wizualną odpowiadającą charakterowi studia.</p>
       <p>Strona została połączona z bazą danych, umożliwiając użytkownikom rejestrację, zapisy na zajęcia oraz zarządzanie informacjami o dostępnych terminach.</p>
+      <p style="margin-top:1.5rem;">Pełna wersja strony dostępna pod adresem: <a href="https://wierzba.wzks.uj.edu.pl/~23_milos/PROJEKT/strona_projekt.html" target="_blank">Breathe&amp;Balance →</a></p>
     </div>
- <h2 class="cs-heading">Zobacz pełną wersję strony</h2>
-<div class="cs-body">
-  <p>
-    Stronę
-    <a href="https://wierzba.wzks.uj.edu.pl/~23_milos/PROJEKT/strona_projekt.html" target="_blank">
-      Breathe&Balance
-    </a>
-    znajdziesz tutaj.
-  </p>
-</div>
   </div>
 </section>
 
 <hr class="cs-divider">
 
-<!-- GALERIA — screeny nowego projektu (4 w rzędzie = mniejsze) -->
+<!-- GALERIA -->
 <div class="cs-gallery">
   <div class="cs-gallery-inner reveal">
-    <div class="cs-gallery-label">Strona główna</div>
-    <img class="cs-img-full" src="main1.png" alt="Landing">
-    <img class="cs-img-full" src="main2.png" alt="quote">
 
+    <!-- strona główna — pełna szerokość -->
+    <div class="cs-gallery-label">Strona główna</div>
+    <img class="cs-img-full" src="main1.png" alt="Landing page">
+    <img class="cs-img-full" src="main2.png" alt="Sekcja quote">
+
+    <!-- podstrony — 2 kolumny -->
     <div class="cs-gallery-label">Podstrony</div>
-    <div class="cs-img-grid-2">
+    <div class="cs-grid-2">
       <img src="instruktorzy.png" alt="Instruktorzy">
-      <img src="grafik.png" alt="Zajęcia">
+      <img src="grafik.png" alt="Grafik zajęć">
       <img src="cennik.png" alt="Cennik">
       <img src="zajecia.png" alt="Zajęcia">
-      </div>
-      <div class="cs-gallery-label">Obszar panelu klienta</div>
-    <div class="cs-img-grid-2">
-      <img src="r1.png" alt="Rezerwacja1">
-      <img src="r2.png" alt="Rezerwacja2">
-      <img src="r3.png" alt="Rezerwacja3">
-      <img src="r4.png" alt="Rezerwacja 4">
-      <img src="r5.png" alt="Rezerwacja5">
-      <img src="edycja1.png" alt="Rezerwacja - edycja1">
-      <img src="edycja2.png" alt="Rezerwacja - edycja2">
     </div>
+
+    <!-- panel klienta — 3 kolumny -->
+    <div class="cs-gallery-label">Panel klienta</div>
+    <div class="cs-grid-3">
+      <img src="r1.png" alt="Rezerwacja 1">
+      <img src="r2.png" alt="Rezerwacja 2">
+      <img src="r3.png" alt="Rezerwacja 3">
+      <img src="r4.png" alt="Rezerwacja 4">
+      <img src="r5.png" alt="Rezerwacja 5">
+      <img src="edycja1.png" alt="Edycja 1">
+      <img src="edycja2.png" alt="Edycja 2">
+    </div>
+
   </div>
 </div>
 
@@ -405,7 +315,6 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
             <div class="ds-color-swatch" style="background:#8B9496;"></div>
             <span class="ds-color-hex">#8B9496</span>
           </div>
-        
         </div>
       </div>
 
@@ -429,8 +338,7 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
   </div>
 </div>
 
-
-<!-- CHALLENGE / SOLUTION -->
+<!-- CHALLENGE -->
 <section class="cs-section reveal">
   <div class="cs-2col">
     <div>
@@ -439,7 +347,7 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
     </div>
     <div class="cs-body">
       <p>Analiza potrzeb potencjalnych klientów wykazała, że najważniejsze są szybkie odnalezienie harmonogramu, przejrzysta prezentacja oferty oraz możliwość zapisania się na zajęcia bez konieczności kontaktu telefonicznego.</p>
-      <p>W odpowiedzi na te potrzeby zaprojektowano intuicyjną strukturę nawigacji oraz system zapisów połączony z bazą danych, umożliwiający rejestrację uczestników i zarządzanie terminami zajęć. Dodatkowo zastosowano spokojną kolorystykę i minimalistyczny układ, które nawiązują do charakteru studia i wspierają pozytywne doświadczenia użytkownika.</p>
+      <p>W odpowiedzi na te potrzeby zaprojektowano intuicyjną strukturę nawigacji oraz system zapisów połączony z bazą danych, umożliwiający rejestrację uczestników i zarządzanie terminami zajęć. Zastosowano spokojną kolorystykę i minimalistyczny układ nawiązujące do charakteru studia.</p>
     </div>
   </div>
 </section>
@@ -465,21 +373,20 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
     </div>
     <div class="cs-step">
       <div class="cs-step-idx">03</div>
-      <div class="cs-step-title">Projekt interfejsu i implementacja</div>
-      <div class="cs-step-desc">Opracowano strukturę strony oraz responsywny interfejs użytkownika. Projekt został zaimplementowany przy użyciu HTML oraz CSS.</div>
+      <div class="cs-step-title">Projekt i implementacja</div>
+      <div class="cs-step-desc">Opracowano strukturę strony oraz responsywny interfejs użytkownika. Projekt zaimplementowano przy użyciu HTML i CSS.</div>
       <div class="cs-step-line"></div>
     </div>
     <div class="cs-step">
       <div class="cs-step-idx">04</div>
       <div class="cs-step-title">Integracja z bazą danych</div>
-      <div class="cs-step-desc">Zaprojektowano i połączono bazę danych z systemem zapisów, umożliwiając rejestrację użytkowników, zarządzanie zajęciami oraz przechowywanie informacji o dostępnych terminach.</div>
+      <div class="cs-step-desc">Zaprojektowano i połączono bazę danych z systemem zapisów, umożliwiając rejestrację użytkowników i zarządzanie terminami zajęć.</div>
       <div class="cs-step-line"></div>
     </div>
   </div>
 </section>
 
-
-<!-- REFLEKSJA -->
+<!-- WNIOSKI -->
 <section class="cs-section reveal">
   <div class="cs-2col">
     <div>
@@ -492,7 +399,7 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
   </div>
 </section>
 
-<!-- NEXT PROJECT -->
+<!-- NEXT -->
 <a href="Karuzela.html" class="cs-next">
   <div>
     <p class="cs-next-lbl">Następny projekt</p>
