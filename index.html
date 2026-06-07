@@ -180,6 +180,19 @@ nav.scrolled {
   letter-spacing: 0.12em; color: rgba(255,255,255,0.35);
   transition: transform 0.7s var(--ease);
 }
+.project-featured-img img,
+.project-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s var(--ease);
+}
+
+.project-featured:hover .project-featured-img img,
+.project-card:hover .project-card-img img {
+  transform: scale(1.04);
+}
 .project-featured:hover .project-img-inner,
 .project-card:hover .project-img-inner { transform: scale(1.04); }
  
@@ -404,9 +417,9 @@ footer {
   </div>
 
   <a href="soma.html" class="project-featured reveal">
-    <div class="project-featured-img">
-      <div class="project-img-inner" style="background: linear-gradient(135deg, #e7a89c 0%, #be6046 100%);">SOMA</div>
-    </div>
+<div class="project-card-img">
+  <img src="soma_logo.png" alt="Breath & Balance">
+</div>
     <div class="project-featured-body">
       <div class="project-num">01</div>
       <div>
@@ -423,9 +436,9 @@ footer {
   </a>
 
     <a href="GG.html" class="project-featured reveal">
-    <div class="project-featured-img">
-      <div class="project-img-inner" style="background: linear-gradient(135deg,#C8A882,#9B7B5A);">SOMA</div>
-    </div>
+<div class="project-featured-img">
+  <img src="Projekt bez nazwy.png" alt="Aplikacja GoodGut">
+</div>
     <div class="project-featured-body">
       <div class="project-num">01</div>
       <div>
@@ -445,9 +458,9 @@ footer {
 
   <div class="projects-row reveal">
     <a href="ZZ.html" class="project-card">
-      <div class="project-card-img">
-        <div class="project-img-inner" style="background: linear-gradient(135deg,#7A9B6A,#5A7A4A);">Złoty Zakwas</div>
-      </div>
+<div class="project-card-img">
+  <img src="logobrown.png" alt="Breath & Balance">
+</div>
       <div class="project-card-body">
         <div class="project-num">02</div>
         <h3 class="project-card-name">Złoty zakwas - branding piekarni rzemieślniczej</h3>
@@ -459,9 +472,9 @@ footer {
     </a>
 
     <a href="MyBus.html" class="project-card">
-      <div class="project-card-img">
-        <div class="project-img-inner" style="background: linear-gradient(135deg,#8A4A5A,#6A2A3A);">MyBus</div>
-      </div>
+<div class="project-card-img">
+  <img src="MBlogo.png" alt="Breath & Balance">
+</div>
       <div class="project-card-body">
         <div class="project-num">03</div>
         <h3 class="project-card-name">MyBus - redesign aplikacji</h3>
@@ -473,9 +486,9 @@ footer {
     </a>
     
     <a href="BB.html" class="project-card">
-      <div class="project-card-img">
-        <div class="project-img-inner" style="background: linear-gradient(135deg,#8A4A5A,#6A2A3A);">Breath&Balance</div>
-      </div>
+<div class="project-card-img">
+  <img src="dlonie.jpg" alt="Breath & Balance">
+</div>
       <div class="project-card-body">
         <div class="project-num">05</div>
         <h3 class="project-card-name">Breath&Balance - strona studia jogi</h3>
