@@ -166,6 +166,33 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
   border-right: 1px solid var(--border); position: relative;
   transition: background 0.3s;
 }
+/* ── DESIGN SYSTEM ── */
+.cs-design { background: var(--paper); padding: 4rem 0; }
+.cs-design-inner { max-width: var(--max); margin: 0 auto; padding: 0 3rem; }
+.cs-design-label {
+  font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--muted);
+  display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2.5rem;
+}
+.cs-design-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+.cs-design-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+
+/* kolory */
+.ds-block-title { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+
+.ds-colors { display: flex; gap: 1rem; }
+.ds-color-item { display: flex; flex-direction: column; gap: 0.5rem; }
+.ds-color-swatch { width: 80px; height: 80px; border: 1px solid var(--border); }
+.ds-color-name { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em; color: var(--ink); font-weight: 500; }
+.ds-color-hex { font-family: var(--mono); font-size: 0.56rem; color: var(--muted); }
+
+/* czcionki */
+.ds-fonts { display: flex; flex-direction: column; gap: 1.5rem; }
+.ds-font-item { padding: 1.5rem; border: 1px solid var(--border); background: var(--bg); }
+.ds-font-preview { font-size: 2.2rem; font-weight: 700; line-height: 1; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+.ds-font-name { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.ds-font-sample { font-size: 0.85rem; color: var(--muted); margin-top: 0.4rem; font-weight: 300; }
 .cs-step:last-child { border-right: none; }
 .cs-step:hover { background: var(--bg2); }
 .cs-step-idx { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.15em; color: var(--light); margin-bottom: 0.75rem; }
@@ -249,7 +276,7 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
 <!-- COVER -->
 <!-- COVER — logobrown.png jako tło, tekst na wierzchu -->
 <div class="cs-cover">
-  <img class="cs-cover-bg" src="GGlogo.png" alt="Złoty Zakwas cover">
+  <img class="cs-cover-bg" src="Projekt bez nazwy.png" alt="Złoty Zakwas cover">
   <div class="cs-cover-gradient"></div>
 
   <div class="cs-cover-content">
