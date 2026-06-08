@@ -111,7 +111,7 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
   border: 1px solid var(--border);
 }
 
-/* ── GALERIA SCREENSHOTÓW ── */
+/* GALERIA */
 .cs-gallery { background: var(--bg2); padding: 4rem 0; }
 .cs-gallery-inner { max-width: var(--max); margin: 0 auto; padding: 0 3rem; }
 .cs-gallery-label {
@@ -121,27 +121,29 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
 }
 .cs-gallery-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-/* siatka zdjęć 2 kolumny */
-.cs-img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-.cs-img-grid img { width: 100%; display: block; height: auto; border: 1px solid var(--border); }
+/* siatka 4 kolumny — screeny zmniejszone */
+.cs-img-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.cs-img-grid-4 img {
+  width: 100%; display: block; height: auto;
+  border: 1px solid var(--border);
+}
 
-/* pojedyncze zdjęcie na całą szerokość w galerii */
+/* siatka 2 kolumny — główne screeny */
+.cs-img-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 1rem;
+}
+.cs-img-grid-2 img {
+  width: 100%; display: block; height: auto;
+  border: 1px solid var(--border);
+}
+
 .cs-img-full { width: 100%; display: block; height: auto; border: 1px solid var(--border); margin-bottom: 1.5rem; }
-
-/* mobile screenshoty — pionowe */
-.cs-mobile-row {
-  display: flex; gap: 1.5rem; overflow-x: auto; padding-bottom: 0.5rem; margin-top: 1.5rem;
-}
-.cs-mobile-frame {
-  flex-shrink: 0; width: 200px;
-  border: 1px solid var(--border); background: var(--paper); overflow: hidden; border-radius: 16px;
-}
-.cs-mobile-inner {
-  aspect-ratio: 9/19.5;
-  background: linear-gradient(180deg, var(--bg2), var(--light));
-  display: flex; align-items: center; justify-content: center;
-}
-.cs-mobile-inner img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 0 0 16px 16px; }
 
 /* ── PROBLEM CARDS ── */
 .cs-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-top: 2rem; }
@@ -378,9 +380,8 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
     <!-- pełna szerokość -->
     <img class="cs-img-full" src="Projekt bez nazwy.png" alt="Logo główne">
 
-    <div class="cs-gallery-label">Podstrony</div>
-    <!-- siatka 2x2 -->
-    <div class="cs-img-grid">
+    <div class="cs-gallery-label">Podstrony — nowy design</div>
+    <div class="cs-img-grid-2">
       <img src="profil.png" alt="Profil">
       <img src="logowanie.png" alt="logowanie">
       <img src="landing.png" alt="Landing Page">
