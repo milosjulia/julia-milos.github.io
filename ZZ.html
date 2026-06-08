@@ -54,7 +54,6 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
   object-fit: cover; object-position: center;
   display: block;
 }
-/* gradient żeby tekst był czytelny */
 .cs-cover-gradient {
   position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(20,20,16,0.82) 0%, rgba(20,20,16,0.3) 50%, rgba(20,20,16,0.1) 100%);
@@ -90,7 +89,7 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
 .cs-2col { display: grid; grid-template-columns: 1fr 1.8fr; gap: 5rem; align-items: start; }
 .cs-divider { border: none; border-top: 1px solid var(--border); margin: 0; }
 
-/* ── ZDJĘCIE POJEDYNCZE (np. opis.png) ── */
+/* ── ZDJĘCIE POJEDYNCZE ── */
 .cs-img-single {
   width: 100%; display: block; height: auto;
   border: 1px solid var(--border);
@@ -134,12 +133,40 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
 .ds-color-name { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em; color: var(--ink); font-weight: 500; }
 .ds-color-hex { font-family: var(--mono); font-size: 0.56rem; color: var(--muted); }
 
-/* czcionki */
-.ds-fonts { display: flex; flex-direction: column; gap: 1.5rem; }
-.ds-font-item { padding: 1.5rem; border: 1px solid var(--border); background: var(--bg); }
-.ds-font-preview { font-size: 2.2rem; font-weight: 700; line-height: 1; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
-.ds-font-name { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
-.ds-font-sample { font-size: 0.85rem; color: var(--muted); margin-top: 0.4rem; font-weight: 300; }
+/* CZCIONKI — kwadrat na screenshot + opis obok */
+.ds-fonts { display: flex; flex-direction: column; gap: 1rem; }
+.ds-font-item {
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+/* kwadrat na screenshot czcionki */
+.ds-font-img {
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+  background: var(--paper);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ds-font-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* tekst opisowy obok kwadratu */
+.ds-font-info { display: flex; flex-direction: column; gap: 0.3rem; }
+.ds-font-name { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); font-weight: 500; }
+.ds-font-note { font-family: var(--sans); font-size: 0.78rem; color: var(--muted); font-weight: 300; line-height: 1.5; }
+
 
 /* ── PROCESS ── */
 .cs-process { display: flex; border: 1px solid var(--border); overflow: hidden; margin-top: 2rem; }
@@ -203,7 +230,7 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
     <div class="cs-cover-meta">
       <div class="cs-meta-item">
         <span class="cs-meta-label">Projekt</span>
-        <span class="cs-meta-value">Identyfikacja marki</span>
+        <span class="cs-meta-value">Branding</span>
       </div>
       <div class="cs-meta-item">
         <span class="cs-meta-label">Rok</span>
@@ -215,7 +242,7 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
       </div>
       <div class="cs-meta-item">
         <span class="cs-meta-label">Kategoria</span>
-        <span class="cs-meta-value">Branding</span>
+        <span class="cs-meta-value">Projektowanie graficzne</span>
       </div>
     </div>
 
@@ -223,7 +250,7 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
     <p class="cs-cover-sub">— piekarnia rzemieślnicza w sercu Katowic</p>
 
     <div class="cs-cover-tags">
-      <span class="cs-tag">Identyfikacja wizualna</span>
+      <span class="cs-tag">Projektowanie graficzne</span>
       <span class="cs-tag">Figma</span>
       <span class="cs-tag">Branding</span>
       <span class="cs-tag">Figma · Adobe Photoshop</span>
@@ -260,8 +287,8 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
       <span class="eyebrow">Przegląd projektu</span>
       <h2 class="cs-heading">O projekcie</h2>
       <div class="cs-body">
-        <p>Projekt kompleksowej identyfikacji wizualnej dla piekarni rzemieślniczej „Złoty Zakwas". Opracowano logo, paletę kolorystyczną, typografię oraz materiały promocyjne podkreślające tradycyjny charakter marki, jakość wypieków i naturalne składniki.</p>
-        <p>Celem projektu było stworzenie spójnego i rozpoznawalnego wizerunku budującego zaufanie klientów.</p>
+        <p>Projekt kompleksowej identyfikacji wizualnej dla piekarni rzemieślniczej „Złoty Zakwas". Opracowano logo, paletę kolorystyczną, typografię oraz materiały promocyjne podkreślające lokalny charakter marki, jakość wypieków i naturalne składniki.</p>
+        <p>Celem projektu było stworzenie spójnego i rozpoznawalnego wizerunku budującego zaufanie klientów. Jako grupę odbiorców obrano mieszkańców Katowic w wieku 25-45 lat, którzy cenią sobie jakość, estetykę i styl "slow"</p>
       </div>
     </div>
     <!-- opis.png po prawej stronie -->
@@ -299,7 +326,6 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
       <div>
         <p class="ds-block-title">Paleta kolorów</p>
         <div class="ds-colors">
-          <!-- zmień hex i nazwę na swoje kolory z projektu -->
           <div class="ds-color-item">
             <div class="ds-color-swatch" style="background: #43302E;"></div>
             <span class="ds-color-hex">#43302E</span>
@@ -319,18 +345,27 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
       <div>
         <p class="ds-block-title">Typografia</p>
         <div class="ds-fonts">
-          <!-- czcionka 1 — zmień nazwę i font-family na tę z projektu -->
+
           <div class="ds-font-item">
-            <div class="ds-font-preview" style="font-family: 'Climate Crisis';">Aa</div>
-            <div class="ds-font-name">Climate Crisis</div>
-            <div class="ds-font-sample">Nagłówki · Logo · Regular</div>
+            <div class="ds-font-img">
+              <img src="climatecrisis.png" alt=" climatecrisis">
+          
+            </div>
+            <div class="ds-font-info">
+    
+              <span class="ds-font-note">Nagłówki · Logo · Regular</span>
+            </div>
           </div>
-          <!-- czcionka 2 -->
+
           <div class="ds-font-item">
-            <div class="ds-font-preview" style="font-family: 'Outfit', monospace; font-weight: 400;">Aa</div>
-            <div class="ds-font-name">Outfit</div>
-            <div class="ds-font-sample">Treść · Regular</div>
+            <div class="ds-font-img">
+            <img src="outfitzz.png" alt="outfit">  
+            </div>
+            <div class="ds-font-info">
+              <span class="ds-font-note">Treść · Regular</span>
+            </div>
           </div>
+
         </div>
       </div>
 
@@ -346,7 +381,7 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
     <div class="cs-step">
       <div class="cs-step-idx">01</div>
       <div class="cs-step-title">Logo</div>
-      <div class="cs-step-desc">Opracowanie znaku graficznego nawiązującego do tradycji rzemiosła piekarskiego i naturalnych składników.</div>
+      <div class="cs-step-desc">Opracowanie znaku graficznego nawiązującego autentycznego tonu marki i naturalnych składników, ale w nowoczesnym wydaniu.</div>
       <div class="cs-step-line"></div>
     </div>
     <div class="cs-step">
@@ -358,7 +393,7 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
     <div class="cs-step">
       <div class="cs-step-idx">03</div>
       <div class="cs-step-title">Typografia</div>
-      <div class="cs-step-desc">Dobór krojów pisma — czytelny, elegancki charakter pasujący do premium rzemiosła.</div>
+      <div class="cs-step-desc">Dobór krojów pisma — czytelny, nowoczesny charakter pasujący do premium rzemiosła.</div>
       <div class="cs-step-line"></div>
     </div>
     <div class="cs-step">
@@ -374,8 +409,8 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
 <section class="cs-section reveal">
   <div class="cs-2col">
     <div>
-      <span class="eyebrow">Wnioski</span>
-      <h2 class="cs-heading">Czego się nauczyłam</h2>
+      <span class="eyebrow">Zakończenie projektu</span>
+      <h2 class="cs-heading">Wnioski</h2>
     </div>
     <div class="cs-body">
       <p>Projekt nauczył mnie jak ważna jest spójność we wszystkich punktach styku marki z klientem — od logo po opakowanie. Każdy element musi opowiadać tę samą historię.</p>

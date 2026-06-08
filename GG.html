@@ -187,19 +187,40 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
 .ds-color-name { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em; color: var(--ink); font-weight: 500; }
 .ds-color-hex { font-family: var(--mono); font-size: 0.56rem; color: var(--muted); }
 
-/* czcionki */
-.ds-fonts { display: flex; flex-direction: column; gap: 1.5rem; }
-.ds-font-item { padding: 1.5rem; border: 1px solid var(--border); background: var(--bg); }
-.ds-font-preview { font-size: 2.2rem; font-weight: 700; line-height: 1; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
-.ds-font-name { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
-.ds-font-sample { font-size: 0.85rem; color: var(--muted); margin-top: 0.4rem; font-weight: 300; }
-.cs-step:last-child { border-right: none; }
-.cs-step:hover { background: var(--bg2); }
-.cs-step-idx { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.15em; color: var(--light); margin-bottom: 0.75rem; }
-.cs-step-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 0.4rem; }
-.cs-step-desc { font-size: 0.76rem; color: var(--muted); line-height: 1.65; }
-.cs-step-line { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: transparent; transition: background 0.3s; }
-.cs-step:hover .cs-step-line { background: var(--coral); }
+/* CZCIONKI — kwadrat na screenshot + opis obok */
+.ds-fonts { display: flex; flex-direction: column; gap: 1rem; }
+.ds-font-item {
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+/* kwadrat na screenshot czcionki */
+.ds-font-img {
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+  background: var(--paper);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ds-font-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* tekst opisowy obok kwadratu */
+.ds-font-info { display: flex; flex-direction: column; gap: 0.3rem; }
+.ds-font-name { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); font-weight: 500; }
+.ds-font-note { font-family: var(--sans); font-size: 0.78rem; color: var(--muted); font-weight: 300; line-height: 1.5; }
+
 
 /* ── OUTCOMES ── */
 .cs-outcomes {
@@ -447,25 +468,28 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
       </div>
 
       <!-- CZCIONKI -->
-      <div>
+    <div>
         <p class="ds-block-title">Typografia</p>
         <div class="ds-fonts">
-          <!-- czcionka 1 — zmień nazwę i font-family na tę z projektu -->
+
           <div class="ds-font-item">
-            <div class="ds-font-preview" style="font-family: 'Climate Crisis';">Aa</div>
-            <div class="ds-font-name">Outfit</div>
-            <div class="ds-font-sample">Treść · Regular · Bold</div>
+            <div class="ds-font-img">
+            <img src="outfit.png" alt="Outfit">  
+            </div>
+            <div class="ds-font-info">
+              <span class="ds-font-note">Treść · Regular</span>
+            </div>
           </div>
 
-    </div>
-  </div>
+        </div>
+      </div>
 </div>
 <!-- REFLEKSJA -->
 <section class="cs-section reveal">
   <div class="cs-2col">
     <div>
-      <span class="eyebrow">Wnioski</span>
-      <h2 class="cs-heading">Czego się nauczyłam</h2>
+      <span class="eyebrow">Zakończenie projektu</span>
+      <h2 class="cs-heading">Wnioski</h2>
     </div>
     <div class="cs-body">
       <p>Tworząc projekt aplikacji GOODGUT kluczową rolę odegrały badania użytkownika. To pokazało mi, że projektowanie w zgodzie z potzrebami odbiorcy ma ogromny wpływ na użyteczność i dostępność aplikacji, a także sprzyja budowaniu zaufania i głosu marki .</p>

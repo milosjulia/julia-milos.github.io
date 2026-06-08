@@ -30,39 +30,17 @@ html { scroll-behavior: smooth; }
 body { font-family: var(--sans); background: var(--bg); color: var(--ink); overflow-x: hidden; }
 
 /* NAV */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 1.4rem 3rem;
-  transition: background 0.4s var(--ease);
-}
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.4rem 3rem; transition: background 0.4s var(--ease); }
 nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
 .nav-logo { font-family: var(--sans); font-weight: 600; font-size: 0.88rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
 .nav-back { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s; }
 .nav-back:hover { color: var(--ink); }
 
 /* COVER */
-.cs-cover {
-  height: 100vh; min-height: 600px;
-  position: relative; overflow: hidden;
-  display: flex; align-items: flex-end;
-}
-/* zdjęcie jako tło — position absolute żeby nie pchało treści */
-.cs-cover-bg {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: center;
-  display: block;
-}
-.cs-cover-gradient {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(20,20,16,0.82) 0%, rgba(20,20,16,0.35) 50%, rgba(20,20,16,0.1) 100%);
-}
-.cs-cover-content {
-  position: relative; z-index: 10;
-  padding: 0 3rem 4rem; width: 100%;
-  display: flex; flex-direction: column; gap: 1.5rem;
-}
+.cs-cover { height: 100vh; min-height: 600px; position: relative; overflow: hidden; display: flex; align-items: flex-end; }
+.cs-cover-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+.cs-cover-gradient { position: absolute; inset: 0; background: linear-gradient(to top, rgba(20,20,16,0.82) 0%, rgba(20,20,16,0.35) 50%, rgba(20,20,16,0.1) 100%); }
+.cs-cover-content { position: relative; z-index: 10; padding: 0 3rem 4rem; width: 100%; display: flex; flex-direction: column; gap: 1.5rem; }
 .cs-cover-meta { display: flex; gap: 3rem; flex-wrap: wrap; }
 .cs-meta-item { display: flex; flex-direction: column; gap: 0.2rem; }
 .cs-meta-label { font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
@@ -73,7 +51,7 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
 .cs-tag { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.25rem 0.75rem; border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.6); }
 .cs-page-num { position: absolute; bottom: 3rem; right: 3rem; z-index: 10; font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em; color: rgba(255,255,255,0.25); }
 
-/* STATS — czcionka jawnie ustawiona na --sans i --mono */
+/* STATS */
 .cs-strip { background: var(--ink); display: flex; }
 .cs-stat { flex: 1; padding: 1.75rem 2rem; border-right: 1px solid rgba(255,255,255,0.07); display: flex; flex-direction: column; gap: 0.25rem; }
 .cs-stat:last-child { border-right: none; }
@@ -92,11 +70,7 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
 /* SCREENSHOTS */
 .cs-screenshot-full { background: var(--bg2); padding: 4rem 0; }
 .cs-screenshot-inner { max-width: var(--max); margin: 0 auto; padding: 0 3rem; }
-.cs-screenshot-label {
-  font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.2em;
-  text-transform: uppercase; color: var(--muted);
-  display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem;
-}
+.cs-screenshot-label { font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
 .cs-screenshot-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 .cs-frame { border: 1px solid var(--border); background: var(--paper); overflow: hidden; }
 .cs-img { width: 100%; display: block; height: auto; }
@@ -116,19 +90,46 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
 /* DESIGN SYSTEM */
 .cs-design-wrap { background: var(--paper); padding: 4rem 0; }
 .cs-design-inner { max-width: var(--max); margin: 0 auto; padding: 0 3rem; }
-.cs-design-label {
-  font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.2em;
-  text-transform: uppercase; color: var(--muted);
-  display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2.5rem;
-}
+.cs-design-label { font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2.5rem; }
 .cs-design-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 .cs-design-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
 .ds-block-title { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.25rem; }
+
+/* CZCIONKI — kwadrat na screenshot + opis obok */
 .ds-fonts { display: flex; flex-direction: column; gap: 1rem; }
-.ds-font-item { padding: 1.5rem; border: 1px solid var(--border); background: var(--bg); }
-.ds-font-preview { font-size: 2.5rem; font-weight: 700; line-height: 1; margin-bottom: 0.4rem; letter-spacing: -0.01em; color: var(--ink); }
-.ds-font-name { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); font-weight: 500; }
-.ds-font-note { font-family: var(--sans); font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem; font-weight: 300; }
+.ds-font-item {
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+/* kwadrat na screenshot czcionki */
+.ds-font-img {
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+  background: var(--paper);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ds-font-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* tekst opisowy obok kwadratu */
+.ds-font-info { display: flex; flex-direction: column; gap: 0.3rem; }
+.ds-font-name { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); font-weight: 500; }
+.ds-font-note { font-family: var(--sans); font-size: 0.78rem; color: var(--muted); font-weight: 300; line-height: 1.5; }
+
+/* KOLORY */
 .ds-colors { display: flex; gap: 1rem; flex-wrap: wrap; }
 .ds-color-item { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
 .ds-color-swatch { width: 72px; height: 72px; border: 1px solid var(--border); }
@@ -181,22 +182,10 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
   <div class="cs-cover-gradient"></div>
   <div class="cs-cover-content">
     <div class="cs-cover-meta">
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">Projekt</span>
-        <span class="cs-meta-value">Strona internetowa</span>
-      </div>
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">Rok</span>
-        <span class="cs-meta-value">2026</span>
-      </div>
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">Narzędzia</span>
-        <span class="cs-meta-value">Figma</span>
-      </div>
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">Kategoria</span>
-        <span class="cs-meta-value">UX/UI</span>
-      </div>
+      <div class="cs-meta-item"><span class="cs-meta-label">Projekt</span><span class="cs-meta-value">Strona internetowa</span></div>
+      <div class="cs-meta-item"><span class="cs-meta-label">Rok</span><span class="cs-meta-value">2026</span></div>
+      <div class="cs-meta-item"><span class="cs-meta-label">Narzędzia</span><span class="cs-meta-value">Figma</span></div>
+      <div class="cs-meta-item"><span class="cs-meta-label">Kategoria</span><span class="cs-meta-value">UX/UI</span></div>
     </div>
     <h1 class="cs-cover-title">SOMA</h1>
     <p class="cs-cover-sub">— strona internetowa z suplementami</p>
@@ -204,30 +193,17 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
       <span class="cs-tag">UX/UI</span>
       <span class="cs-tag">Desktop</span>
       <span class="cs-tag">Figma</span>
-      <span class="cs-tag">Wellness</span>
     </div>
   </div>
   <span class="cs-page-num">01 / 06</span>
 </div>
 
-<!-- STATS STRIP -->
+<!-- STATS -->
 <div class="cs-strip">
-  <div class="cs-stat">
-    <span class="cs-stat-val">Desktop</span>
-    <span class="cs-stat-lbl">Platforma</span>
-  </div>
-  <div class="cs-stat">
-    <span class="cs-stat-val">Figma</span>
-    <span class="cs-stat-lbl">Narzędzie</span>
-  </div>
-  <div class="cs-stat">
-    <span class="cs-stat-val">UX/UI</span>
-    <span class="cs-stat-lbl">Zakres</span>
-  </div>
-  <div class="cs-stat">
-    <span class="cs-stat-val">2026</span>
-    <span class="cs-stat-lbl">Rok</span>
-  </div>
+  <div class="cs-stat"><span class="cs-stat-val">Desktop</span><span class="cs-stat-lbl">Platforma</span></div>
+  <div class="cs-stat"><span class="cs-stat-val">Figma</span><span class="cs-stat-lbl">Narzędzie</span></div>
+  <div class="cs-stat"><span class="cs-stat-val">UX/UI</span><span class="cs-stat-lbl">Zakres</span></div>
+  <div class="cs-stat"><span class="cs-stat-val">2026</span><span class="cs-stat-lbl">Rok</span></div>
 </div>
 
 <!-- OVERVIEW -->
@@ -238,7 +214,7 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
       <h2 class="cs-heading">O projekcie</h2>
     </div>
     <div class="cs-body">
-      <p>Projekt przedstawia nowoczesny landing page marki suplementów wellness skierowanej głównie do kobiet dbających o zdrowie i świadomą suplementację.</p>
+      <p>Projekt przedstawia nowoczesną stronę internetową marki suplementów wellness skierowanej głównie do kobiet dbających o zdrowie i świadomą suplementację.</p>
       <p>Głównym celem projektu było stworzenie przejrzystego, budzącego zaufanie doświadczenia, które ułatwia dobór suplementów dopasowanych do indywidualnych potrzeb organizmu. Warstwa wizualna łączy styl premium wellness z nowoczesnym interfejsem, tworząc ciekawy i przyjazny odbiór marki.</p>
     </div>
   </div>
@@ -254,12 +230,14 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
       <img class="cs-img" src="soma1.png" alt="SOMA — widok główny">
     </div>
     <div class="cs-screens-grid">
-      <div class="cs-frame">
-        <img class="cs-img" src="soma2.png" alt="SOMA — sklep">
-      </div>
-      <div class="cs-frame">
-        <img class="cs-img" src="soma3.png" alt="SOMA — quiz">
-      </div>
+      <div class="cs-frame"><img class="cs-img" src="soma2.png" alt="SOMA — sklep"></div>
+      <div class="cs-frame"><img class="cs-img" src="soma3.png" alt="SOMA — składniki"></div>
+      <div class="cs-frame"><img class="cs-img" src="quiz.png" alt="SOMA — quiz"></div>
+      <div class="cs-frame"><img class="cs-img" src="opinie.png" alt="SOMA — opinie"></div>
+    </div>
+    <!-- pełna szerokość osobno -->
+    <div style="margin-top:1.5rem;">
+      <div class="cs-frame"><img class="cs-img" src="cta.png" alt="SOMA — CTA"></div>
     </div>
   </div>
 </div>
@@ -274,6 +252,7 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
     <div class="cs-body">
       <p>Użytkownicy mają trudność z doborem odpowiednich suplementów — rynek jest przesycony ofertami, a brak spersonalizowanego podejścia powoduje frustrację i brak zaufania do marki.</p>
       <p>Kluczowym wyzwaniem było zaprojektowanie ścieżki użytkownika, która w prosty sposób prowadzi od wejścia na stronę do świadomego wyboru produktu — bez przytłaczania informacją.</p>
+      <p>W celu zapewnienia pozytywnych doświadczeń użytkownika oraz zwiększenia trafności decyzji zakupowych zastosowano rozwiązania takie jak quiz dopasowujący suplementację do indywidualnych potrzeb, przejrzyste karty produktów oraz sekcję opinii i historii użytkowników.</p>
     </div>
   </div>
 </section>
@@ -288,7 +267,7 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
     <div class="cs-step">
       <div class="cs-step-idx">01</div>
       <div class="cs-step-title">Persona</div>
-      <div class="cs-step-desc">Stworzenie persony, która będzie przykładowym odbiorcą strony. W odpowiedzi na jej potrzeby i problemy opracowano use case oraz empathy map. W rezultacie zaproponowano odpowiednie rozwiązania projektowe (UX/UI).</div>
+      <div class="cs-step-desc">Stworzenie persony, która będzie przykładowym odbiorcą strony. W odpowiedzi na jej potrzeby i problemy opracowano use case oraz empathy map.</div>
       <div class="cs-step-line"></div>
     </div>
     <div class="cs-step">
@@ -318,45 +297,43 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
     <div class="cs-design-label">Design System</div>
     <div class="cs-design-grid">
 
+      <!-- CZCIONKI  -->
       <div>
         <p class="ds-block-title">Typografia</p>
         <div class="ds-fonts">
+
           <div class="ds-font-item">
-            <div class="ds-font-preview">Aa</div>
-            <div class="ds-font-name">Kalnia</div>
-            <div class="ds-font-note">Nagłówki · Medium · Semibold</div>
+            <div class="ds-font-img">
+              <img src="kalnia.png" alt="Kalnia">
+          
+            </div>
+            <div class="ds-font-info">
+    
+              <span class="ds-font-note">Nagłówki · Medium · Semibold</span>
+            </div>
           </div>
+
           <div class="ds-font-item">
-            <div class="ds-font-preview" style="font-weight:400;">Aa</div>
-            <div class="ds-font-name">Onest</div>
-            <div class="ds-font-note">Treść · Regular</div>
+            <div class="ds-font-img">
+            <img src="onest.png" alt="Onest">  
+            </div>
+            <div class="ds-font-info">
+              <span class="ds-font-note">Treść · Regular</span>
+            </div>
           </div>
+
         </div>
       </div>
 
+      <!-- KOLORY -->
       <div>
         <p class="ds-block-title">Kolorystyka</p>
         <div class="ds-colors">
-          <div class="ds-color-item">
-            <div class="ds-color-swatch" style="background:#BDA633;"></div>
-            <div class="ds-color-hex">#BDA633</div>
-          </div>
-          <div class="ds-color-item">
-            <div class="ds-color-swatch" style="background:#FFF1E0; border:1px solid #ddd;"></div>
-            <div class="ds-color-hex">#FFF1E0</div>
-          </div>
-          <div class="ds-color-item">
-            <div class="ds-color-swatch" style="background:#5E5220;"></div>
-            <div class="ds-color-hex">#5E5220</div>
-          </div>
-          <div class="ds-color-item">
-            <div class="ds-color-swatch" style="background:#F06427;"></div>
-            <div class="ds-color-hex">#F06427</div>
-          </div>
-          <div class="ds-color-item">
-            <div class="ds-color-swatch" style="background:#FAD7D5;"></div>
-            <div class="ds-color-hex">#FAD7D5</div>
-          </div>
+          <div class="ds-color-item"><div class="ds-color-swatch" style="background:#BDA633;"></div><div class="ds-color-hex">#BDA633</div></div>
+          <div class="ds-color-item"><div class="ds-color-swatch" style="background:#FFF1E0; border:1px solid #ddd;"></div><div class="ds-color-hex">#FFF1E0</div></div>
+          <div class="ds-color-item"><div class="ds-color-swatch" style="background:#5E5220;"></div><div class="ds-color-hex">#5E5220</div></div>
+          <div class="ds-color-item"><div class="ds-color-swatch" style="background:#F06427;"></div><div class="ds-color-hex">#F06427</div></div>
+          <div class="ds-color-item"><div class="ds-color-swatch" style="background:#FAD7D5;"></div><div class="ds-color-hex">#FAD7D5</div></div>
         </div>
       </div>
 
@@ -368,8 +345,8 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
 <section class="cs-section reveal">
   <div class="cs-2col">
     <div>
-      <span class="eyebrow">Wnioski</span>
-      <h2 class="cs-heading">Czego się nauczyłam</h2>
+      <span class="eyebrow">Zakończenie projektu</span>
+      <h2 class="cs-heading">Wnioski</h2>
     </div>
     <div class="cs-body">
       <p>Projekt nauczył mnie jak ważna jest spójność wizualna w budowaniu zaufania do marki. Każdy element wpływa na doświadczenie klienta i zachęca go do stania się częścią społeczności.</p>
@@ -387,7 +364,7 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
 </a>
 
 <footer>
-  <span>2026 Julia Miłoś</span>
+  <span>© 2026 Julia Miłoś</span>
 </footer>
 
 <script>
