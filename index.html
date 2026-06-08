@@ -76,7 +76,7 @@ nav.scrolled {
   object-fit: cover; object-position: center top;
   display: block;
 }
-/* płynne przejście w prawo */
+
 .hero-photo::after {
   content: '';
   position: absolute; inset: 0;
@@ -112,7 +112,7 @@ nav.scrolled {
  
 .hero-cta { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
  
-/* przyciski — wyraźny kontrast */
+
 .btn-primary {
   padding: 0.85rem 2rem;
   background: var(--ink); color: #FAFAF7;
@@ -159,7 +159,7 @@ nav.scrolled {
 }
 .section-count { font-family: var(--mono); font-size: 0.6rem; color: var(--light); letter-spacing: 0.1em; }
  
-/* karta duża */
+
 .project-featured {
   display: grid; grid-template-columns: 1fr 1fr;
   border: 1px solid var(--border); margin-bottom: 1.5rem;
@@ -212,11 +212,11 @@ nav.scrolled {
 .project-featured-desc {
   font-size: 0.78rem; color: var(--muted); line-height: 1.8;
   margin-bottom: 1.5rem; font-weight: 400;
-  /* ogranicz do 4 linii */
+  
   display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
 }
  
-/* tagi — poprawione kolory */
+
 .project-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
 .tag {
   font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.1em;
@@ -224,11 +224,11 @@ nav.scrolled {
   border: 1px solid var(--border); color: var(--muted);
   background: transparent;
 }
-/* różowy/łososiowy akcent */
+
 .tag.coral, .tag.accent {
   background: var(--accent-l); color: var(--accent); border-color: rgba(194,112,90,0.2);
 }
-/* ciemny tag */
+
 .tag.olive, .tag.dark, .tag.burg {
   background: var(--dark-tag-l); color: var(--dark-tag); border-color: rgba(58,56,50,0.15);
 }
@@ -239,7 +239,7 @@ nav.scrolled {
 }
 .project-featured:hover .project-arrow { transform: translate(4px,-4px); color: var(--accent); }
  
-/* karty małe */
+
 .projects-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
  
 .project-card {
@@ -550,7 +550,7 @@ footer {
       <div class="contact-links">
         <a href="mailto:milosjulia.o@gmail.com" class="contact-link">milosjulia.o@gmail.com<span class="arrow">↗</span></a>
         <a href="https://www.linkedin.com/in/julia-miłoś-8b3b56356/" class="contact-link" target="_blank">LinkedIn<span class="arrow">↗</span></a>
-        <a href="JuliaMiłoś_CV.pdf" class="contact-link">CV<span class="arrow">↗</span></a>
+        <a href="JuliaMiłoś_CV.pdf" target="_blank" class="contact-link">CV<span class="arrow">↗</span></a>
       </div>
     </div>
     <form class="contact-form reveal" id="contactForm">

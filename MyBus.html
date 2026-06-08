@@ -47,11 +47,11 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
   position: relative; overflow: hidden;
   display: flex; align-items: flex-end;
 }
-/* tło odsunięte — padding sprawia że zdjęcie nie wypełnia krawędzi */
+
 .cs-cover-bg {
   position: absolute;
-  /* odstęp od krawędzi — dostosuj do uznania */
-  top: 6%; left: 5%; right: 5%; bottom: 0;
+ 
+  top: 0%; left: 0%; right: 0%; bottom: 0;
   width: 90%; height: 94%;
   object-fit: cover; object-position: center top;
   display: block;
@@ -61,7 +61,7 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
   position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(20,20,16,0.88) 0%, rgba(20,20,16,0.4) 45%, rgba(20,20,16,0.15) 100%);
 }
-/* ciemne tło za zdjęciem */
+
 .cs-cover::before {
   content: '';
   position: absolute; inset: 0;
@@ -119,10 +119,10 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
   border: 1px solid var(--border);
 }
 
-/* siatka 2 kolumny — główne screeny (mniejsze niż domyślnie) */
+/* siatka 2 kolumny — główne screeny */
 .cs-img-grid-2 {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 w rzędzie = mniejsze */
+  grid-template-columns: repeat(4, 1fr); 
   gap: 1rem;
 }
 .cs-img-grid-2 img {
@@ -194,7 +194,7 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
   text-transform: uppercase; color: var(--muted);
   display: flex; align-items: center; gap: 1.5rem;
   margin-top: 2.5rem; margin-bottom: 1.25rem;
-  grid-column: 1 / -1; /* rozciągnij na całą szerokość 2col */
+  grid-column: 1 / -1; 
 }
 .cs-old-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
@@ -260,7 +260,7 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
   <a href="index.html" class="nav-back">← Wszystkie projekty</a>
 </nav>
 
-<!-- COVER — zdjęcie odsunięte od krawędzi -->
+<!-- COVER  -->
 <div class="cs-cover">
   <img class="cs-cover-bg" src="MBlogo.png" alt="MyBus cover">
   <div class="cs-cover-gradient"></div>
@@ -330,7 +330,7 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
 
 <hr class="cs-divider">
 
-<!-- GALERIA — screeny nowego projektu (4 w rzędzie = mniejsze) -->
+<!-- GALERIA -->
 <div class="cs-gallery">
   <div class="cs-gallery-inner reveal">
     <div class="cs-gallery-label">Logo główne</div>
@@ -421,7 +421,7 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
       <p>W ramach projektu przeprojektowano architekturę informacji, uproszczono interfejs oraz dodano funkcje takie jak śledzenie przejazdu w czasie rzeczywistym, cyfrowy portfel biletów oraz bardziej przejrzysty system planowania podróży.</p>
     </div>
 
-    <!-- etykieta i siatka rozciągają się na obie kolumny -->
+
     <div class="cs-old-label">Wygląd aplikacji przed redesignem</div>
     <div class="cs-old-grid">
       <img src="stare1.png" alt="Stary wygląd 1">
