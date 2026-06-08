@@ -51,14 +51,12 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
   background: linear-gradient(135deg, #e7a89c 0%, #be6046 100%);
 }
 
-/* podmień na img gdy masz screenshot okładkowy */
 .cs-cover-img {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover; object-position: center;
   display: block;
 }
-/* gradient na dole żeby tekst był czytelny */
 .cs-cover-gradient {
   position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(20,20,16,0.75) 0%, rgba(20,20,16,0.1) 60%, transparent 100%);
@@ -142,38 +140,6 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
 }
 
 
-/* ramka na screenshot */
-.cs-frame {
-  border: 1px solid var(--border);
-  background: var(--paper);
-  overflow: hidden;
-  position: relative;
-}
-
-/* gdy dodasz screenshot: <img src="screenshot.jpg" class="cs-img"> */
-.cs-img { width: 100%; display: block; height: auto; }
-
-/* wiele screenshotów — siatka */
-.cs-screens-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 1.5rem;
-}
-.cs-screens-grid .cs-frame { }
-
-/* mobile screenshoty — pionowe */
-.cs-mobile-row {
-  display: flex; gap: 1.5rem; overflow-x: auto; padding-bottom: 0.5rem; margin-top: 1.5rem;
-}
-.cs-mobile-frame {
-  flex-shrink: 0; width: 200px;
-  border: 1px solid var(--border); background: var(--paper); overflow: hidden; border-radius: 16px;
-}
-.cs-mobile-inner {
-  aspect-ratio: 9/19.5;
-  background: linear-gradient(180deg, var(--bg2), var(--light));
-  display: flex; align-items: center; justify-content: center;
-}
-.cs-mobile-inner img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 0 0 16px 16px; }
-
 
 /* ── PROCESS ── */
 .cs-process { display: flex; border: 1px solid var(--border); overflow: hidden; margin-top: 2rem; }
@@ -191,16 +157,6 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
 .cs-step:hover .cs-step-line { background: var(--coral); }
 
 
-/* ── QUOTE ── */
-.cs-quote { padding: 0 3rem 5rem; max-width: var(--max); margin: 0 auto; }
-.cs-quote-box {
-  padding: 2.5rem; border: 1px solid var(--border);
-  border-top: 3px solid var(--coral); background: var(--paper);
-  display: grid; grid-template-columns: auto 1fr; gap: 1.75rem; align-items: start;
-}
-.cs-quote-mark { font-family: var(--sans); font-size: 5rem; line-height: 0.75; color: var(--coral-l); font-weight: 700; }
-.cs-quote-text { font-size: 1rem; font-style: italic; font-weight: 300; line-height: 1.75; color: var(--ink); margin-bottom: 0.75rem; }
-.cs-quote-by { font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
 
 /* ── NEXT PROJECT ── */
 .cs-next {
@@ -239,7 +195,6 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
   .cs-outcome:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
   .cs-screenshot-inner { padding: 0 1.5rem; }
   .cs-screens-grid { grid-template-columns: 1fr; }
-  .cs-quote { padding: 0 1.5rem 4rem; }
   .cs-next { padding: 3rem 1.5rem; flex-direction: column; align-items: flex-start; gap: 1rem; }
   footer { flex-direction: column; gap: 0.5rem; }
 }

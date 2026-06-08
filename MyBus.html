@@ -41,46 +41,64 @@ nav.scrolled { background: rgba(242,239,232,0.95); backdrop-filter: blur(12px); 
 .nav-back { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s; }
 .nav-back:hover { color: var(--ink); }
 
-/* COVER */
+/* ── COVER ── */
 .cs-cover {
   height: 100vh; min-height: 600px;
   position: relative; overflow: hidden;
   display: flex; align-items: flex-end;
+  background: linear-gradient(135deg, #e7a89c 0%, #be6046 100%);
 }
 
-.cs-cover-bg {
-  position: absolute;
- 
-  top: 0%; left: 0%; right: 0%; bottom: 0;
-  width: 90%; height: 94%;
-  object-fit: cover; object-position: center top;
+.cs-cover-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
   display: block;
-  border-radius: 8px;
 }
 .cs-cover-gradient {
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(20,20,16,0.88) 0%, rgba(20,20,16,0.4) 45%, rgba(20,20,16,0.15) 100%);
+  background: linear-gradient(to top, rgba(20,20,16,0.75) 0%, rgba(20,20,16,0.1) 60%, transparent 100%);
 }
 
-.cs-cover::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: #1A1714;
-}
 .cs-cover-content {
   position: relative; z-index: 10;
-  padding: 0 3rem 4rem; width: 100%;
-  display: flex; flex-direction: column; gap: 1.25rem;
+  padding: 0 3rem 4rem;
+  width: 100%;
+  display: flex; flex-direction: column; gap: 1.5rem;
 }
-.cs-cover-meta { display: flex; gap: 3rem; flex-wrap: wrap; }
+
+.cs-cover-meta {
+  display: flex; gap: 3rem; flex-wrap: wrap;
+}
 .cs-meta-item { display: flex; flex-direction: column; gap: 0.2rem; }
 .cs-meta-label { font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
 .cs-meta-value { font-size: 0.82rem; font-weight: 400; color: rgba(255,255,255,0.85); }
-.cs-cover-title { font-family: var(--sans); font-weight: 700; font-size: clamp(3.5rem, 8vw, 7.5rem); letter-spacing: -0.02em; line-height: 0.95; color: #fff; }
-.cs-cover-sub { font-size: 1rem; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.55); letter-spacing: 0.04em; }
+
+.cs-cover-title {
+  font-family: var(--sans); font-weight: 700;
+  font-size: clamp(3.5rem, 8vw, 7.5rem);
+  letter-spacing: -0.02em; line-height: 0.95;
+  color: #FFFFFF;
+}
+.cs-cover-title em { font-style: italic; font-weight: 300; color: rgba(255,255,255,0.6); }
+
+.cs-cover-sub {
+  font-size: 1rem; font-weight: 300; font-style: italic;
+  color: rgba(255,255,255,0.55); letter-spacing: 0.04em;
+}
+
 .cs-cover-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-.cs-tag { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.25rem 0.75rem; border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.6); }
-.cs-page-num { position: absolute; bottom: 3rem; right: 3rem; z-index: 10; font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em; color: rgba(255,255,255,0.25); }
+.cs-tag {
+  font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 0.25rem 0.75rem;
+  border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.6);
+}
+
+.cs-page-num {
+  position: absolute; bottom: 3rem; right: 3rem; z-index: 10;
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em;
+  color: rgba(255,255,255,0.25);
+}
 
 /* STATS */
 .cs-strip { background: var(--ink); display: flex; }
@@ -261,8 +279,7 @@ footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex;
 </nav>
 
 <!-- COVER  -->
-<div class="cs-cover">
-  <img class="cs-cover-bg" src="MBlogo.png" alt="MyBus cover">
+<div class="cs-cover" style=" background: linear-gradient(135deg, #CADDFE 0%, #01408D 100%);">
   <div class="cs-cover-gradient"></div>
   <div class="cs-cover-content">
     <div class="cs-cover-meta">
